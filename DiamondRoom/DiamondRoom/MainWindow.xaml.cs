@@ -23,6 +23,7 @@ namespace DiamondRoom
         public MainWindow()
         {
             InitializeComponent();
+            this.Hide();
         }
     }
 }

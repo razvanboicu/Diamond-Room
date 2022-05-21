@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiamondRoom"
+        xmlns:views="clr-namespace:DiamondRoom.Views"
+        xmlns:viewmodels="clr-namespace:DiamondRoom.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" Background="#e3e3e3"
+        Title="DiamondRoom" Height="1080" Width="1920">
+    <ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:FirstViewModel}">
+                <views:FirstView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:LoginView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:RegisterViewModel}">
+                <views:RegisterView/>
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>
 </Window>
