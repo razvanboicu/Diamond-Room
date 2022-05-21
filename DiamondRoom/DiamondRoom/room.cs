@@ -17,6 +17,7 @@ namespace DiamondRoom
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public room()
         {
+            this.offers = new HashSet<offer>();
             this.room_images = new HashSet<room_images>();
             this.room_reservations = new HashSet<room_reservations>();
             this.rooms_features = new HashSet<rooms_features>();
@@ -26,6 +27,8 @@ namespace DiamondRoom
         public string type { get; set; }
         public bool available { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<offer> offers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<room_images> room_images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -27,11 +27,14 @@ namespace DiamondRoom
     
         public virtual DbSet<address> addresses { get; set; }
         public virtual DbSet<contact> contacts { get; set; }
+        public virtual DbSet<extra_features> extra_features { get; set; }
         public virtual DbSet<feature> features { get; set; }
+        public virtual DbSet<offer> offers { get; set; }
         public virtual DbSet<payment> payments { get; set; }
         public virtual DbSet<reservation> reservations { get; set; }
         public virtual DbSet<room> rooms { get; set; }
         public virtual DbSet<room_images> room_images { get; set; }
+        public virtual DbSet<room_reservation_extra_features> room_reservation_extra_features { get; set; }
         public virtual DbSet<room_reservations> room_reservations { get; set; }
         public virtual DbSet<rooms_features> rooms_features { get; set; }
         public virtual DbSet<user> users { get; set; }

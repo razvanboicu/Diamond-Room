@@ -23,12 +23,30 @@
           <Property Name="phoneNr1" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="phoneNr2" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="extra_features">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="feature">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_room" Type="int" Nullable="false" />
+          <Property Name="discount" Type="int" Nullable="false" />
+          <Property Name="info" Type="nvarchar" MaxLength="150" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="payment">
           <Key>
@@ -66,6 +84,14 @@
           <Property Name="fk_room" Type="int" Nullable="false" />
           <Property Name="imagePath" Type="varbinary(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="room_reservation_extra_features">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_room_reservation" Type="int" Nullable="false" />
+          <Property Name="fk_extra_feature" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="room_reservations">
           <Key>
             <PropertyRef Name="id" />
@@ -99,6 +125,18 @@
           <Property Name="fk_contact" Type="int" Nullable="false" />
           <Property Name="fk_address" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_offer_room">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="offer" Type="Self.offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="offer">
+              <PropertyRef Name="fk_room" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_room_images_room">
           <End Role="room" Type="Self.room" Multiplicity="1" />
           <End Role="room_images" Type="Self.room_images" Multiplicity="*" />
@@ -108,6 +146,30 @@
             </Principal>
             <Dependent Role="room_images">
               <PropertyRef Name="fk_room" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_room_reservation_extra_features_extra_features">
+          <End Role="extra_features" Type="Self.extra_features" Multiplicity="1" />
+          <End Role="room_reservation_extra_features" Type="Self.room_reservation_extra_features" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="extra_features">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="room_reservation_extra_features">
+              <PropertyRef Name="fk_extra_feature" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_room_reservation_extra_features_room_reservation_extra_features">
+          <End Role="room_reservation_extra_features" Type="Self.room_reservation_extra_features" Multiplicity="1" />
+          <End Role="room_reservation_extra_features1" Type="Self.room_reservation_extra_features" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="room_reservation_extra_features">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="room_reservation_extra_features1">
+              <PropertyRef Name="id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -198,17 +260,32 @@
         <EntityContainer Name="DiamondRoomModelStoreContainer">
           <EntitySet Name="address" EntityType="Self.address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="extra_features" EntityType="Self.extra_features" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="feature" EntityType="Self.feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="offer" EntityType="Self.offer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payment" EntityType="Self.payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="reservation" EntityType="Self.reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="room" EntityType="Self.room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="room_images" EntityType="Self.room_images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="room_reservation_extra_features" EntityType="Self.room_reservation_extra_features" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="room_reservations" EntityType="Self.room_reservations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rooms_features" EntityType="Self.rooms_features" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_offer_room" Association="Self.FK_offer_room">
+            <End Role="room" EntitySet="room" />
+            <End Role="offer" EntitySet="offer" />
+          </AssociationSet>
           <AssociationSet Name="FK_room_images_room" Association="Self.FK_room_images_room">
             <End Role="room" EntitySet="room" />
             <End Role="room_images" EntitySet="room_images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_room_reservation_extra_features_extra_features" Association="Self.FK_room_reservation_extra_features_extra_features">
+            <End Role="extra_features" EntitySet="extra_features" />
+            <End Role="room_reservation_extra_features" EntitySet="room_reservation_extra_features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_room_reservation_extra_features_room_reservation_extra_features" Association="Self.FK_room_reservation_extra_features_room_reservation_extra_features">
+            <End Role="room_reservation_extra_features" EntitySet="room_reservation_extra_features" />
+            <End Role="room_reservation_extra_features1" EntitySet="room_reservation_extra_features" />
           </AssociationSet>
           <AssociationSet Name="FK_room_reservations_payment" Association="Self.FK_room_reservations_payment">
             <End Role="payment" EntitySet="payment" />
@@ -264,6 +341,15 @@
           <Property Name="phoneNr2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="users" Relationship="Self.FK_user_contact" FromRole="contact" ToRole="user" />
         </EntityType>
+        <EntityType Name="extra_features">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="room_reservation_extra_features" Relationship="Self.FK_room_reservation_extra_features_extra_features" FromRole="extra_features" ToRole="room_reservation_extra_features" />
+        </EntityType>
         <EntityType Name="feature">
           <Key>
             <PropertyRef Name="id" />
@@ -271,6 +357,17 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="rooms_features" Relationship="Self.FK_rooms_features_feature" FromRole="feature" ToRole="rooms_features" />
+        </EntityType>
+        <EntityType Name="offer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_room" Type="Int32" Nullable="false" />
+          <Property Name="discount" Type="Int32" Nullable="false" />
+          <Property Name="info" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="room" Relationship="Self.FK_offer_room" FromRole="offer" ToRole="room" />
         </EntityType>
         <EntityType Name="payment">
           <Key>
@@ -301,6 +398,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="available" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="offers" Relationship="Self.FK_offer_room" FromRole="room" ToRole="offer" />
           <NavigationProperty Name="room_images" Relationship="Self.FK_room_images_room" FromRole="room" ToRole="room_images" />
           <NavigationProperty Name="room_reservations" Relationship="Self.FK_room_reservations_room" FromRole="room" ToRole="room_reservations" />
           <NavigationProperty Name="rooms_features" Relationship="Self.FK_rooms_features_room" FromRole="room" ToRole="rooms_features" />
@@ -313,6 +411,17 @@
           <Property Name="fk_room" Type="Int32" Nullable="false" />
           <Property Name="imagePath" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="room" Relationship="Self.FK_room_images_room" FromRole="room_images" ToRole="room" />
+        </EntityType>
+        <EntityType Name="room_reservation_extra_features">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_room_reservation" Type="Int32" Nullable="false" />
+          <Property Name="fk_extra_feature" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="extra_features" Relationship="Self.FK_room_reservation_extra_features_extra_features" FromRole="room_reservation_extra_features" ToRole="extra_features" />
+          <NavigationProperty Name="room_reservation_extra_features1" Relationship="Self.FK_room_reservation_extra_features_room_reservation_extra_features" FromRole="room_reservation_extra_features" ToRole="room_reservation_extra_features1" />
+          <NavigationProperty Name="room_reservation_extra_features2" Relationship="Self.FK_room_reservation_extra_features_room_reservation_extra_features" FromRole="room_reservation_extra_features1" ToRole="room_reservation_extra_features" />
         </EntityType>
         <EntityType Name="room_reservations">
           <Key>
@@ -378,6 +487,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_room_reservation_extra_features_extra_features">
+          <End Role="extra_features" Type="Self.extra_features" Multiplicity="1" />
+          <End Role="room_reservation_extra_features" Type="Self.room_reservation_extra_features" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="extra_features">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="room_reservation_extra_features">
+              <PropertyRef Name="fk_extra_feature" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_rooms_features_feature">
           <End Role="feature" Type="Self.feature" Multiplicity="1" />
           <End Role="rooms_features" Type="Self.rooms_features" Multiplicity="*" />
@@ -387,6 +508,18 @@
             </Principal>
             <Dependent Role="rooms_features">
               <PropertyRef Name="fk_feature" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_offer_room">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="offer" Type="Self.offer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="offer">
+              <PropertyRef Name="fk_room" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -450,14 +583,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_room_reservation_extra_features_room_reservation_extra_features">
+          <End Role="room_reservation_extra_features" Type="Self.room_reservation_extra_features" Multiplicity="1" />
+          <End Role="room_reservation_extra_features1" Type="Self.room_reservation_extra_features" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="room_reservation_extra_features">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="room_reservation_extra_features1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DiamondRoomEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="addresses" EntityType="Self.address" />
           <EntitySet Name="contacts" EntityType="Self.contact" />
+          <EntitySet Name="extra_features" EntityType="Self.extra_features" />
           <EntitySet Name="features" EntityType="Self.feature" />
+          <EntitySet Name="offers" EntityType="Self.offer" />
           <EntitySet Name="payments" EntityType="Self.payment" />
           <EntitySet Name="reservations" EntityType="Self.reservation" />
           <EntitySet Name="rooms" EntityType="Self.room" />
           <EntitySet Name="room_images" EntityType="Self.room_images" />
+          <EntitySet Name="room_reservation_extra_features" EntityType="Self.room_reservation_extra_features" />
           <EntitySet Name="room_reservations" EntityType="Self.room_reservations" />
           <EntitySet Name="rooms_features" EntityType="Self.rooms_features" />
           <EntitySet Name="users" EntityType="Self.user" />
@@ -469,9 +617,17 @@
             <End Role="contact" EntitySet="contacts" />
             <End Role="user" EntitySet="users" />
           </AssociationSet>
+          <AssociationSet Name="FK_room_reservation_extra_features_extra_features" Association="Self.FK_room_reservation_extra_features_extra_features">
+            <End Role="extra_features" EntitySet="extra_features" />
+            <End Role="room_reservation_extra_features" EntitySet="room_reservation_extra_features" />
+          </AssociationSet>
           <AssociationSet Name="FK_rooms_features_feature" Association="Self.FK_rooms_features_feature">
             <End Role="feature" EntitySet="features" />
             <End Role="rooms_features" EntitySet="rooms_features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_offer_room" Association="Self.FK_offer_room">
+            <End Role="room" EntitySet="rooms" />
+            <End Role="offer" EntitySet="offers" />
           </AssociationSet>
           <AssociationSet Name="FK_room_reservations_payment" Association="Self.FK_room_reservations_payment">
             <End Role="payment" EntitySet="payments" />
@@ -492,6 +648,10 @@
           <AssociationSet Name="FK_rooms_features_room" Association="Self.FK_rooms_features_room">
             <End Role="room" EntitySet="rooms" />
             <End Role="rooms_features" EntitySet="rooms_features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_room_reservation_extra_features_room_reservation_extra_features" Association="Self.FK_room_reservation_extra_features_room_reservation_extra_features">
+            <End Role="room_reservation_extra_features" EntitySet="room_reservation_extra_features" />
+            <End Role="room_reservation_extra_features1" EntitySet="room_reservation_extra_features" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -520,11 +680,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="extra_features">
+            <EntityTypeMapping TypeName="DiamondRoomModel.extra_features">
+              <MappingFragment StoreEntitySet="extra_features">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="features">
             <EntityTypeMapping TypeName="DiamondRoomModel.feature">
               <MappingFragment StoreEntitySet="feature">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offers">
+            <EntityTypeMapping TypeName="DiamondRoomModel.offer">
+              <MappingFragment StoreEntitySet="offer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fk_room" ColumnName="fk_room" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -565,6 +745,15 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="fk_room" ColumnName="fk_room" />
                 <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="room_reservation_extra_features">
+            <EntityTypeMapping TypeName="DiamondRoomModel.room_reservation_extra_features">
+              <MappingFragment StoreEntitySet="room_reservation_extra_features">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fk_room_reservation" ColumnName="fk_room_reservation" />
+                <ScalarProperty Name="fk_extra_feature" ColumnName="fk_extra_feature" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
