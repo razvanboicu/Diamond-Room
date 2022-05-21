@@ -7,33 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiamondRoom
+namespace DiamondRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class room
+    public partial class Room
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public room()
+        public Room()
         {
-            this.offers = new HashSet<offer>();
-            this.room_images = new HashSet<room_images>();
-            this.room_reservations = new HashSet<room_reservations>();
-            this.rooms_features = new HashSet<rooms_features>();
+            this.Offers = new HashSet<Offer>();
+            this.Room_images = new HashSet<Room_images>();
+            this.Room_reservations = new HashSet<Room_reservations>();
+            this.Rooms_features = new HashSet<Rooms_features>();
         }
     
         public int id { get; set; }
-        public string type { get; set; }
         public bool available { get; set; }
+        public int fk_type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<offer> offers { get; set; }
+        public virtual ICollection<Offer> Offers { get; set; }
+        public virtual Room_type Room_type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<room_images> room_images { get; set; }
+        public virtual ICollection<Room_images> Room_images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<room_reservations> room_reservations { get; set; }
+        public virtual ICollection<Room_reservations> Room_reservations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rooms_features> rooms_features { get; set; }
+        public virtual ICollection<Rooms_features> Rooms_features { get; set; }
     }
 }

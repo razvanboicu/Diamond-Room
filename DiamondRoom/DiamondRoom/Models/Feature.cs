@@ -7,25 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiamondRoom
+namespace DiamondRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class address
+    public partial class Feature
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public address()
+        public Feature()
         {
-            this.users = new HashSet<user>();
+            this.Rooms_features = new HashSet<Rooms_features>();
         }
     
         public int id { get; set; }
-        public string country { get; set; }
-        public string city { get; set; }
-        public string street { get; set; }
+        public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<Rooms_features> Rooms_features { get; set; }
     }
 }

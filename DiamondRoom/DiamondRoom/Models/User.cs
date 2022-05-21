@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiamondRoom
+namespace DiamondRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class User
     {
         public int id { get; set; }
         public string username { get; set; }
@@ -23,7 +23,7 @@ namespace DiamondRoom
         public int fk_contact { get; set; }
         public int fk_address { get; set; }
     
-        public virtual address address { get; set; }
-        public virtual contact contact { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual Contact Contact { get; set; }
     }
 }

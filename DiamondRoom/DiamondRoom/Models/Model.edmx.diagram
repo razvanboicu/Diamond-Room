@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c451e8ad330142f99f4f307229355f35" Name="Diagram1">
+        <EntityTypeShape EntityType="DiamondRoomModel.Address" Width="1.5" PointX="10.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Contact" Width="1.5" PointX="10.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Extra_features" Width="1.5" PointX="8.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Feature" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Offer" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Payment" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Reservation" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Room" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Room_images" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Room_reservation_extra_features" Width="1.5" PointX="11" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Room_reservations" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Room_type" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.Rooms_features" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiamondRoomModel.User" Width="1.5" PointX="13" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="DiamondRoomModel.FK_user_address" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_user_contact" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_room_reservation_extra_features_extra_features" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_rooms_features_feature" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_offer_room" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK__Payment__fk_room__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_room_reservations_reservation" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK__room__fk_type__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_room_images_room" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_room_reservations_room" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_rooms_features_room" ManuallyRouted="false" />
+        <AssociationConnector Association="DiamondRoomModel.FK_room_reservation_extra_features_room_reservation_extra_features" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,7 +1,10 @@
 ﻿using DiamondRoom.Commands;
+using DiamondRoom.Models;
+using DiamondRoom.Models.BusinessLogic;
 using DiamondRoom.Stores;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +18,9 @@ namespace DiamondRoom.ViewModels
         private bool _userLoggedIn;
         private bool _showSignUp;
         private bool _showSignIn;
-        private bool _showLogOut;
+        private bool _showLogOut; 
+
+        private ContactBusinessLogic contactBL;
 
         public ICommand LoginCommand { get; }
         public ICommand SignUpCommand { get; }
@@ -37,8 +42,17 @@ namespace DiamondRoom.ViewModels
                 _showLogOut = true;
             }
 
+            contactBL = new ContactBusinessLogic();
+            //contactBL.AddMethod(this);
+            ContactList = contactBL.GetAllContacts();
         }
 
+        public ObservableCollection<Contact> ContactList
+        {
+            get => contactBL.ContactList;
+            set => contactBL.ContactList = value;
+        }
+     
         public bool ShowLogOut
         {
             get { return _showLogOut; }

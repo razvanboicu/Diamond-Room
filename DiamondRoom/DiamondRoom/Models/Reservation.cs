@@ -7,23 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiamondRoom
+namespace DiamondRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class feature
+    public partial class Reservation
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public feature()
+        public Reservation()
         {
-            this.rooms_features = new HashSet<rooms_features>();
+            this.Room_reservations = new HashSet<Room_reservations>();
         }
     
         public int id { get; set; }
-        public string description { get; set; }
+        public System.DateTime dateFrom { get; set; }
+        public System.DateTime dateTo { get; set; }
+        public int fk_user { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rooms_features> rooms_features { get; set; }
+        public virtual ICollection<Room_reservations> Room_reservations { get; set; }
     }
 }

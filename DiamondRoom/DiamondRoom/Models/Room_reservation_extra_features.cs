@@ -7,17 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiamondRoom
+namespace DiamondRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class room_images
+    public partial class Room_reservation_extra_features
     {
         public int id { get; set; }
-        public int fk_room { get; set; }
-        public byte[] imagePath { get; set; }
+        public int fk_room_reservation { get; set; }
+        public int fk_extra_feature { get; set; }
     
-        public virtual room room { get; set; }
+        public virtual Extra_features Extra_features { get; set; }
+        public virtual Room_reservation_extra_features Room_reservation_extra_features1 { get; set; }
+        public virtual Room_reservation_extra_features Room_reservation_extra_features2 { get; set; }
     }
 }

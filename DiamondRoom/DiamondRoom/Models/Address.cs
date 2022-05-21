@@ -7,27 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiamondRoom
+namespace DiamondRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class reservation
+    public partial class Address
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public reservation()
+        public Address()
         {
-            this.room_reservations = new HashSet<room_reservations>();
+            this.Users = new HashSet<User>();
         }
     
         public int id { get; set; }
-        public System.DateTime dateFrom { get; set; }
-        public System.DateTime dateTo { get; set; }
-        public System.TimeSpan timeFrom { get; set; }
-        public System.TimeSpan timeTo { get; set; }
-        public int fk_user { get; set; }
+        public string country { get; set; }
+        public string city { get; set; }
+        public string street { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<room_reservations> room_reservations { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

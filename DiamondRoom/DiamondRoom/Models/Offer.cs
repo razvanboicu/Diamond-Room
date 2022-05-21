@@ -7,23 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiamondRoom
+namespace DiamondRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class room_reservations
+    public partial class Offer
     {
         public int id { get; set; }
         public int fk_room { get; set; }
-        public int fk_reservation { get; set; }
-        public int fk_payment { get; set; }
-        public string observations { get; set; }
-        public string status { get; set; }
+        public int discount { get; set; }
+        public string info { get; set; }
         public bool deleted { get; set; }
     
-        public virtual payment payment { get; set; }
-        public virtual reservation reservation { get; set; }
-        public virtual room room { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

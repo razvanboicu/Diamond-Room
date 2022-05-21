@@ -7,19 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DiamondRoom
+namespace DiamondRoom.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class offer
+    public partial class Room_images
     {
         public int id { get; set; }
         public int fk_room { get; set; }
-        public int discount { get; set; }
-        public string info { get; set; }
-        public bool deleted { get; set; }
+        public byte[] imagePath { get; set; }
     
-        public virtual room room { get; set; }
+        public virtual Room Room { get; set; }
     }
 }
