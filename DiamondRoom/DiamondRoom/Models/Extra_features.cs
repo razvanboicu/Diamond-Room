@@ -21,9 +21,9 @@ namespace DiamondRoom.Models
         }
     
         public int id { get; set; }
-        public double price { get; set; }
         public bool deleted { get; set; }
         public string service { get; set; }
+        public Nullable<int> price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room_reservation_extra_features> Room_reservation_extra_features { get; set; }

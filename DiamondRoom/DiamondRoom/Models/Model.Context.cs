@@ -15,10 +15,10 @@ namespace DiamondRoom.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class DiamondRoomEntities2 : DbContext
+    public partial class DiamondRoomEntities4 : DbContext
     {
-        public DiamondRoomEntities2()
-            : base("name=DiamondRoomEntities2")
+        public DiamondRoomEntities4()
+            : base("name=DiamondRoomEntities4")
         {
         }
     
@@ -146,6 +146,40 @@ namespace DiamondRoom.Models
                 new ObjectParameter("phonenr2", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyContact", idParameter, emailParameter, phonenr1Parameter, phonenr2Parameter);
+        }
+    
+        public virtual int ModifyExtraFeature(Nullable<int> id, Nullable<int> price, Nullable<bool> deleted, string service)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("price", price) :
+                new ObjectParameter("price", typeof(int));
+    
+            var deletedParameter = deleted.HasValue ?
+                new ObjectParameter("deleted", deleted) :
+                new ObjectParameter("deleted", typeof(bool));
+    
+            var serviceParameter = service != null ?
+                new ObjectParameter("service", service) :
+                new ObjectParameter("service", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyExtraFeature", idParameter, priceParameter, deletedParameter, serviceParameter);
+        }
+    
+        public virtual int ModifyFeature(Nullable<int> id, string description)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyFeature", idParameter, descriptionParameter);
         }
     }
 }

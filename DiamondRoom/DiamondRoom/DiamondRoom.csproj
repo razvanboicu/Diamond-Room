@@ -82,6 +82,8 @@
     <Compile Include="Commands\UpdateContactsCommand.cs" />
     <Compile Include="Converters\AddressConverter.cs" />
     <Compile Include="Converters\ContactConverter.cs" />
+    <Compile Include="Converters\ExtraFeatureConverter.cs" />
+    <Compile Include="Converters\FeatureConverter.cs" />
     <Compile Include="Converters\RegisterUserConverter.cs" />
     <Compile Include="Converters\UserConverter.cs" />
     <Compile Include="Commands\CommandBase.cs" />
@@ -90,6 +92,8 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessLogic\AddressBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\ExtraFeatureBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\FeatureBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\UserBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\ContactBusinessLogic.cs" />
     <Compile Include="Models\Contact.cs">
@@ -151,6 +155,8 @@
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\AdminPanelViewModel.cs" />
     <Compile Include="ViewModels\ContactsTableViewModel.cs" />
+    <Compile Include="ViewModels\ExtraFeatureTableViewModel.cs" />
+    <Compile Include="ViewModels\FeaturesTableViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -161,6 +167,12 @@
     </Compile>
     <Compile Include="Views\ContactsTableView.xaml.cs">
       <DependentUpon>ContactsTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExtraFeatureTableView.xaml.cs">
+      <DependentUpon>ExtraFeatureTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeaturesTableView.xaml.cs">
+      <DependentUpon>FeaturesTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FirstView.xaml.cs">
       <DependentUpon>FirstView.xaml</DependentUpon>
@@ -188,6 +200,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ContactsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExtraFeatureTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FeaturesTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

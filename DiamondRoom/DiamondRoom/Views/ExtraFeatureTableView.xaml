@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DiamondRoom.Views.ContactsTableView"
+﻿<UserControl x:Class="DiamondRoom.Views.ExtraFeatureTableView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,50 +27,50 @@
 
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <DataGrid Name="contactsGrid"  AutoGenerateColumns="False" Height="880" Margin="0,15,0,0"
-                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Contacts}">
+            <DataGrid Name="extraFeaturesGrid"  AutoGenerateColumns="False" Height="880" Margin="0,15,0,0"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ExtraFeatures}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Email" Binding="{Binding email}"/>
-                    <DataGridTextColumn Header="Phone Number(1)" Binding="{Binding phoneNr1}" />
-                    <DataGridTextColumn Header="Phone Number(2)" Binding="{Binding phoneNr2}" />
+                    <DataGridTextColumn Header="Price" Binding="{Binding price}"/>
+                    <DataGridTextColumn Header="Deleted" Binding="{Binding deleted}"/>
+                    <DataGridTextColumn Header="Service description" Binding="{Binding service}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        
-       
+
+
         <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
             <StackPanel.Resources>
-                <localConverter:ContactConverter x:Key="contactConverter"/>
+                <localConverter:ExtraFeatureConverter x:Key="extraFeatureConverter"/>
             </StackPanel.Resources>
             <WrapPanel>
                 <Button Content="Adauga" Margin="15" Width="100" Height="30" Command="{Binding AddCommand}">
                     <Button.CommandParameter>
-                        <MultiBinding Converter="{StaticResource contactConverter}">
-                            <Binding ElementName="txtEmail" Path="Text"/>
-                            <Binding ElementName="txtPhoneNr1" Path="Text"/>
-                            <Binding ElementName="txtPhoneNr2" Path="Text"/>
+                        <MultiBinding Converter="{StaticResource extraFeatureConverter}">
+                            <Binding ElementName="txtPrice" Path="Text"/>
+                            <Binding ElementName="txtDeleted" Path="Text"/>
+                            <Binding ElementName="txtService" Path="Text"/>
                         </MultiBinding>
                     </Button.CommandParameter>
                 </Button>
                 <Button Content="Modifica" Margin="15" Width="100" Height="30" Command="{Binding UpdateCommand}" 
-                    CommandParameter="{Binding ElementName=contactsGrid, Path=SelectedItem}" />
+                    CommandParameter="{Binding ElementName=extraFeaturesGrid, Path=SelectedItem}" />
                 <Button Content="Sterge" Margin="15" Width="100" Height="30" Command="{Binding DeleteCommand}" 
-                    CommandParameter="{Binding ElementName=contactsGrid, Path=SelectedItem}" />
+                    CommandParameter="{Binding ElementName=extraFeaturesGrid, Path=SelectedItem}" />
             </WrapPanel>
             <WrapPanel Margin="0,15,0,0">
-                <Label Width="150" FontSize="15">Email: </Label>
-                <TextBox Name="txtEmail" Width="200" HorizontalAlignment="Left"
-                         Text ="{Binding ElementName=contactsGrid, Path=SelectedItem.email, UpdateSourceTrigger=PropertyChanged}" />
+                <Label Width="150" FontSize="15">Price: </Label>
+                <TextBox Name="txtPrice" Width="200" HorizontalAlignment="Left"
+                         Text="{Binding ElementName=extraFeaturesGrid, Path=SelectedItem.price, UpdateSourceTrigger=PropertyChanged}" />
             </WrapPanel>
             <WrapPanel Margin="0,15,0,0">
-                <Label Width="150" FontSize="15">Phone1: </Label>
-                <TextBox Name="txtPhoneNr1" Width="200" HorizontalAlignment="Left"
-                     Text ="{Binding ElementName=contactsGrid, Path=SelectedItem.phoneNr1, UpdateSourceTrigger=PropertyChanged}" />
+                <Label Width="150" FontSize="15">Deleted(TRUE/FALSE): </Label>
+                <TextBox Name="txtDeleted" Width="200" HorizontalAlignment="Left"
+                         Text="{Binding ElementName=extraFeaturesGrid, Path=SelectedItem.deleted, UpdateSourceTrigger=PropertyChanged}" />
             </WrapPanel>
             <WrapPanel Margin="0,15,0,0">
-                <Label Width="150" FontSize="15">Phone2: </Label>
-                <TextBox Name="txtPhoneNr2" Width="200" HorizontalAlignment="Left"
-                     Text ="{Binding ElementName=contactsGrid, Path=SelectedItem.phoneNr2, UpdateSourceTrigger=PropertyChanged}" />
+                <Label Width="150" FontSize="15">Service description: </Label>
+                <TextBox Name="txtService" Width="200" HorizontalAlignment="Left"
+                         Text="{Binding ElementName=extraFeaturesGrid, Path=SelectedItem.service, UpdateSourceTrigger=PropertyChanged}" />
             </WrapPanel>
         </StackPanel>
 
@@ -82,6 +82,6 @@
                 </Button>
             </StackPanel>
         </StackPanel>
-        
+
     </Grid>
 </UserControl>

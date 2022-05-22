@@ -28,9 +28,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="price" Type="float" Nullable="false" />
           <Property Name="deleted" Type="bit" Nullable="false" />
           <Property Name="service" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="int" />
         </EntityType>
         <EntityType Name="Feature">
           <Key>
@@ -311,6 +311,16 @@
           <Parameter Name="phonenr1" Type="varchar" Mode="In" />
           <Parameter Name="phonenr2" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="ModifyExtraFeature" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="price" Type="int" Mode="In" />
+          <Parameter Name="deleted" Type="bit" Mode="In" />
+          <Parameter Name="service" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ModifyFeature" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="description" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="DiamondRoomModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
@@ -405,9 +415,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="price" Type="Double" Nullable="false" />
           <Property Name="deleted" Type="Boolean" Nullable="false" />
           <Property Name="service" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Int32" />
           <NavigationProperty Name="Room_reservation_extra_features" Relationship="Self.FK_room_reservation_extra_features_extra_features" FromRole="Extra_features" ToRole="Room_reservation_extra_features" />
         </EntityType>
         <EntityType Name="Feature">
@@ -675,7 +685,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DiamondRoomEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DiamondRoomEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Extra_features" EntityType="Self.Extra_features" />
@@ -773,13 +783,23 @@
             <Parameter Name="phonenr1" Mode="In" Type="String" />
             <Parameter Name="phonenr2" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ModifyExtraFeature">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Int32" />
+            <Parameter Name="deleted" Mode="In" Type="Boolean" />
+            <Parameter Name="service" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyFeature">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DiamondRoomModelStoreContainer" CdmEntityContainer="DiamondRoomEntities2">
+        <EntityContainerMapping StorageEntityContainer="DiamondRoomModelStoreContainer" CdmEntityContainer="DiamondRoomEntities4">
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="DiamondRoomModel.Address">
               <MappingFragment StoreEntitySet="Address">
@@ -804,9 +824,9 @@
             <EntityTypeMapping TypeName="DiamondRoomModel.Extra_features">
               <MappingFragment StoreEntitySet="Extra_features">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="deleted" ColumnName="deleted" />
                 <ScalarProperty Name="service" ColumnName="service" />
+                <ScalarProperty Name="price" ColumnName="price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -927,6 +947,8 @@
           <FunctionImportMapping FunctionImportName="AddUser" FunctionName="DiamondRoomModel.Store.AddUser" />
           <FunctionImportMapping FunctionImportName="DeleteContact" FunctionName="DiamondRoomModel.Store.DeleteContact" />
           <FunctionImportMapping FunctionImportName="ModifyContact" FunctionName="DiamondRoomModel.Store.ModifyContact" />
+          <FunctionImportMapping FunctionImportName="ModifyExtraFeature" FunctionName="DiamondRoomModel.Store.ModifyExtraFeature" />
+          <FunctionImportMapping FunctionImportName="ModifyFeature" FunctionName="DiamondRoomModel.Store.ModifyFeature" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

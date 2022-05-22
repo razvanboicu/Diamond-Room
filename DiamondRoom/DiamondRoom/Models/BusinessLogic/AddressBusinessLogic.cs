@@ -10,7 +10,7 @@ namespace DiamondRoom.Models.BusinessLogic
 {
     public class AddressBusinessLogic
     {
-        private DiamondRoomEntities2 context = new DiamondRoomEntities2();
+        private DiamondRoomEntities4 context = new DiamondRoomEntities4();
         public ObservableCollection<Models.Address> Addresses { get; set; }
 
         public string ErrorMessage { get; set; }
@@ -45,6 +45,16 @@ namespace DiamondRoom.Models.BusinessLogic
             }
         }
 
+        public ObservableCollection<Address> GetAllAddresses()
+        {
+            List<Address> addresses = context.Addresses.ToList();
+            ObservableCollection<Address> result = new ObservableCollection<Address>();
+            foreach (Address con in addresses)
+            {
+                result.Add(con);
+            }
+            return result;
+        }
         public int GetAddressWithSpecifiedInfo(string country, string city, string street)
         {
             List<Address> addressesList = context.Addresses.ToList();

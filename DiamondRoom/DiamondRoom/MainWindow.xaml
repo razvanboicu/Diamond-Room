@@ -26,6 +26,12 @@
             <DataTemplate DataType="{x:Type viewmodels:ContactsTableViewModel}">
                 <views:ContactsTableView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:FeaturesTableViewModel}">
+                <views:FeaturesTableView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ExtraFeatureTableViewModel}">
+                <views:ExtraFeatureTableView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

@@ -1,4 +1,6 @@
-﻿using DiamondRoom.Stores;
+﻿using DiamondRoom.Models;
+using DiamondRoom.Models.BusinessLogic;
+using DiamondRoom.Stores;
 using DiamondRoom.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,11 @@ namespace DiamondRoom
     /// </summary>
     public partial class App : Application
     {
+        private UserBusinessLogic userBusinessLogic = new UserBusinessLogic();
         protected override void OnStartup(StartupEventArgs e)
         {
             NavigationStore _navigationStore = new NavigationStore();
-            _navigationStore.CurrentViewModel = new FirstViewModel(_navigationStore, null);
+            _navigationStore.CurrentViewModel = new FirstViewModel(_navigationStore, GetAdmin());
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_navigationStore)
@@ -26,6 +29,11 @@ namespace DiamondRoom
             MainWindow.Show();
 
             base.OnStartup(e);
+        }
+
+        private User GetAdmin()
+        {
+            return userBusinessLogic.CheckIfUserExists("admin", "admin");
         }
     }
 }

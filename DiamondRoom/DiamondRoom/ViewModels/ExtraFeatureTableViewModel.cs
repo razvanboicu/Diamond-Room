@@ -5,7 +5,6 @@ using DiamondRoom.Stores;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,33 +12,32 @@ using System.Windows.Input;
 
 namespace DiamondRoom.ViewModels
 {
-    public class ContactsTableViewModel : ViewModelBase
+    public class ExtraFeatureTableViewModel : ViewModelBase 
     {
         private User _admin;
         private NavigationStore _navigationStore;
-        private ContactBusinessLogic contactBusinessLogic = new ContactBusinessLogic();
+        private ExtraFeatureBusinessLogic extraFeatureBusinessLogic = new ExtraFeatureBusinessLogic();
 
-        public ContactsTableViewModel(NavigationStore navigationStore, User admin)
+        public ExtraFeatureTableViewModel(NavigationStore navigationStore, User admin)
         {
             _navigationStore = navigationStore;
             _admin = admin;
-            Contacts = contactBusinessLogic.GetAllContacts();
             BackCommand = new NavigateCommand<AdminPanelViewModel>(navigationStore, () => new AdminPanelViewModel(_navigationStore, _admin));
-            
+            ExtraFeatures = extraFeatureBusinessLogic.GetAllExtraFeatures();
         }
 
         public ICommand BackCommand { get; }
-        public ObservableCollection<Contact> Contacts
+        public ObservableCollection<Extra_features> ExtraFeatures
         {
-            get => contactBusinessLogic.Contacts;
-            set => contactBusinessLogic.Contacts = value;
+            get => extraFeatureBusinessLogic.ExtraFeatures;
+            set => extraFeatureBusinessLogic.ExtraFeatures = value;
         }
 
         #region Command Members
         //am adus aici metodele din BLL ca sa pot actualiza ErrorMesage
         public void AddMethod(object obj)
         {
-            contactBusinessLogic.AddMethod(obj);
+            extraFeatureBusinessLogic.AddExtraFeature(obj);
         }
 
         private ICommand addCommand;
@@ -57,7 +55,7 @@ namespace DiamondRoom.ViewModels
 
         public void UpdateMethod(object obj)
         {
-            contactBusinessLogic.UpdateMethod(obj);
+            extraFeatureBusinessLogic.ModifyFeature(obj);
         }
 
         private ICommand updateCommand;
@@ -75,8 +73,7 @@ namespace DiamondRoom.ViewModels
 
         public void DeleteMethod(object obj)
         {
-            contactBusinessLogic.DeleteMethod(obj);
-           
+            extraFeatureBusinessLogic.DeleteMethod(obj);
         }
 
         private ICommand deleteCommand;

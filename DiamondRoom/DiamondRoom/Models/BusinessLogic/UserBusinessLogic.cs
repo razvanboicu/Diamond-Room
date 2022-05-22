@@ -12,7 +12,7 @@ namespace DiamondRoom.Models.BusinessLogic
     {
         //private ContactBusinessLogic contactBusinessLogic;
         //private AddressBusinessLogic addressBusinessLogic;
-        private DiamondRoomEntities2 context = new DiamondRoomEntities2();
+        private DiamondRoomEntities4 context = new DiamondRoomEntities4();
         public ObservableCollection<User> Users { get; set; }
 
         public string ErrorMessage { get; set; }
@@ -45,12 +45,12 @@ namespace DiamondRoom.Models.BusinessLogic
             newUser.fk_address = fkAdr;
             newUser.fk_contact = fkCont;
             newUser.accessLevel = 2;
-            //access levels: 0 = admin, 1=staff, 2= client, 3= guest
+            
+            //access levels: 0 = admin, 1 = staff, 2 = client, 3 = guest
 
             if (string.IsNullOrEmpty(newUser.username) || string.IsNullOrEmpty(newUser.password) || string.IsNullOrEmpty(newUser.firstName) || string.IsNullOrEmpty(newUser.lastName))
             {
                 MessageBox.Show("Toate campurile sunt obligatorii!");
-                //Console.WriteLine("Completeaza toate campurile!");
             }
             else
             {
