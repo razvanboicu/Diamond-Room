@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:localConverter="clr-namespace:DiamondRoom.Converters"
              xmlns:local="clr-namespace:DiamondRoom.Views"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
@@ -14,54 +15,65 @@
                 <GradientStop Color="#E9967A" Offset="0"></GradientStop>
             </LinearGradientBrush>
         </Grid.Background>
-
         <Border Height="890" Width="600" VerticalAlignment="Center" CornerRadius="40" Background="black"/>
         <StackPanel Width="350" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <localConverter:AddressConverter x:Key="AddressConverter"/>
+                <localConverter:ContactConverter x:Key="ContactConverter"/>
+                <localConverter:UserConverter x:Key="UserConverter"/>
+                <localConverter:RegisterUserConverter x:Key="RegisterUserConverter"/>
+            </StackPanel.Resources>
+            
             <TextBlock Margin="20" Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes">Register</TextBlock>
             <StackPanel Margin="20 50"  >
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="TextAccount" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding FirstName, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="First name" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"></TextBox>
+                    <TextBox Name="txtFirstName" Text="{Binding FirstName, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="First name" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"></TextBox>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="TextAccount" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding LastName, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Last name" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"></TextBox>
+                    <TextBox Name="txtLastName" Text="{Binding LastName, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Last name" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"></TextBox>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="Phone" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Phone number" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                    <TextBox Name="txtPhoneNumber1" Text="{Binding PhoneNumber1, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Phone number 1" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <materialDesign:PackIcon Kind="Phone" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
+                    <TextBox Name="txtPhoneNumber2" Text="{Binding PhoneNumber2, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Phone number 2" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="AddressMarkerOutline" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding Country, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Country" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                    <TextBox Name="txtCountry" Text ="{Binding ElementName=personsGrid, Path=SelectedItem.Country, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Country" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="AddressMarker" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding City, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="City" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                    <TextBox Name="txtCity" Text ="{Binding ElementName=personsGrid, Path=SelectedItem.City, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="City" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="GoogleStreetView" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding Street, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Street" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                    <TextBox Name="txtStreet" Text ="{Binding ElementName=personsGrid, Path=SelectedItem.Street, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Street" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding Email, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Email" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"></TextBox>
+                    <TextBox Name="txtEmail"  Text="{Binding Email, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Email" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"></TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding Username, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Username" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"></TextBox>
+                    <TextBox Name="txtUsername" Text="{Binding Username, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Username" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"></TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="Password" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Text="{Binding Password, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Password" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                    <TextBox Name="txtPassword" Text="{Binding Password, UpdateSourceTrigger = PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Password" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
                 </StackPanel>
 
                 <!--{Binding Path = WelcomeMessage, UpdateSourceTrigger = PropertyChanged}-->
@@ -69,10 +81,23 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <StackPanel Margin="10" HorizontalAlignment="Center">
-                    <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
+                    <Button Content="Register" Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#D94448"
                                 Background="#D94448" Foreground="White" ToolTip="Create the account!" Command="{Binding Path = RegisterCommand}">
-                        Register
+                        <Button.CommandParameter>
+                            <MultiBinding Converter="{StaticResource RegisterUserConverter}">
+                                <Binding ElementName="txtFirstName" Path="Text"/>
+                                <Binding ElementName="txtLastName" Path="Text"/>
+                                <Binding ElementName="txtPhoneNumber1" Path="Text"/>
+                                <Binding ElementName="txtPhoneNumber2" Path="Text"/>
+                                <Binding ElementName="txtCountry" Path="Text"/>
+                                <Binding ElementName="txtCity" Path="Text"/>
+                                <Binding ElementName="txtStreet" Path="Text"/>
+                                <Binding ElementName="txtEmail" Path="Text"/>
+                                <Binding ElementName="txtUsername" Path="Text"/>
+                                <Binding ElementName="txtPassword" Path="Text"/>
+                            </MultiBinding>
+                        </Button.CommandParameter>
                     </Button>
                 </StackPanel>
                 <StackPanel Margin="10" HorizontalAlignment="Center">
@@ -83,6 +108,9 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
+            <WrapPanel>
+                <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+            </WrapPanel>
         </StackPanel>
 
        

@@ -18,7 +18,7 @@ namespace DiamondRoom
         protected override void OnStartup(StartupEventArgs e)
         {
             NavigationStore _navigationStore = new NavigationStore();
-            _navigationStore.CurrentViewModel = new FirstViewModel(_navigationStore, false);
+            _navigationStore.CurrentViewModel = new FirstViewModel(_navigationStore, null);
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_navigationStore)

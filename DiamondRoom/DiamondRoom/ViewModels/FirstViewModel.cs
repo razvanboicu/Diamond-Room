@@ -14,8 +14,8 @@ namespace DiamondRoom.ViewModels
 {
     public class FirstViewModel : ViewModelBase
     {
+        private User _userLoggedIn;
         private string _username;
-        private bool _userLoggedIn;
         private bool _showSignUp;
         private bool _showSignIn;
         private bool _showLogOut; 
@@ -24,10 +24,9 @@ namespace DiamondRoom.ViewModels
 
         public ICommand LoginCommand { get; }
         public ICommand SignUpCommand { get; }
-        public FirstViewModel(NavigationStore navigationStore, bool userLoggedIn)
+        public FirstViewModel(NavigationStore navigationStore, User userLoggedIn)
         {
-            _userLoggedIn = userLoggedIn;
-            if (!_userLoggedIn)
+            if (userLoggedIn == null)
             {
                 _username = "Guest";
 
@@ -39,6 +38,7 @@ namespace DiamondRoom.ViewModels
             }
             else
             {
+                _userLoggedIn = userLoggedIn;
                 _showLogOut = true;
             }
 
@@ -49,8 +49,8 @@ namespace DiamondRoom.ViewModels
 
         public ObservableCollection<Contact> ContactList
         {
-            get => contactBL.ContactList;
-            set => contactBL.ContactList = value;
+            get => contactBL.Contacts;
+            set => contactBL.Contacts = value;
         }
      
         public bool ShowLogOut
