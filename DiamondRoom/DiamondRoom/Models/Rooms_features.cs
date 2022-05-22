@@ -17,6 +17,7 @@ namespace DiamondRoom.Models
         public int id { get; set; }
         public int fk_room { get; set; }
         public int fk_feature { get; set; }
+    
         public virtual Feature Feature { get; set; }
         public virtual Room Room { get; set; }
     }

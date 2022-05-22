@@ -10,7 +10,7 @@ namespace DiamondRoom.Models.BusinessLogic
 {
     public class AddressBusinessLogic
     {
-        private DiamondRoomEntities1 context = new DiamondRoomEntities1();
+        private DiamondRoomEntities2 context = new DiamondRoomEntities2();
         public ObservableCollection<Models.Address> Addresses { get; set; }
 
         public string ErrorMessage { get; set; }

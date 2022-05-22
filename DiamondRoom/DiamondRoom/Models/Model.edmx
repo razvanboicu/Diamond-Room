@@ -305,6 +305,12 @@
         <Function Name="DeleteContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="ModifyContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="phonenr1" Type="varchar" Mode="In" />
+          <Parameter Name="phonenr2" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="DiamondRoomModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
@@ -669,7 +675,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DiamondRoomEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DiamondRoomEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Extra_features" EntityType="Self.Extra_features" />
@@ -761,13 +767,19 @@
           <FunctionImport Name="DeleteContact">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="ModifyContact">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="phonenr1" Mode="In" Type="String" />
+            <Parameter Name="phonenr2" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DiamondRoomModelStoreContainer" CdmEntityContainer="DiamondRoomEntities1">
+        <EntityContainerMapping StorageEntityContainer="DiamondRoomModelStoreContainer" CdmEntityContainer="DiamondRoomEntities2">
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="DiamondRoomModel.Address">
               <MappingFragment StoreEntitySet="Address">
@@ -914,6 +926,7 @@
           <FunctionImportMapping FunctionImportName="AddFeature" FunctionName="DiamondRoomModel.Store.AddFeature" />
           <FunctionImportMapping FunctionImportName="AddUser" FunctionName="DiamondRoomModel.Store.AddUser" />
           <FunctionImportMapping FunctionImportName="DeleteContact" FunctionName="DiamondRoomModel.Store.DeleteContact" />
+          <FunctionImportMapping FunctionImportName="ModifyContact" FunctionName="DiamondRoomModel.Store.ModifyContact" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -84,13 +84,14 @@
     <Compile Include="Converters\ContactConverter.cs" />
     <Compile Include="Converters\RegisterUserConverter.cs" />
     <Compile Include="Converters\UserConverter.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Models\Address.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Models\BusinessLogic\AddressBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\UserBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\ContactBusinessLogic.cs" />
     <Compile Include="Models\Contact.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -115,7 +116,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\BusinessLogic\ContactBusinessLogic.cs" />
     <Compile Include="Models\Offer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -143,12 +143,12 @@
     <Compile Include="Models\Room_type.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserCustom.cs" />
-    <Compile Include="Services\DatabaseConnection.cs" />
-    <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserCustom.cs" />
+    <Compile Include="Services\DatabaseConnection.cs" />
+    <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\AdminPanelViewModel.cs" />
     <Compile Include="ViewModels\ContactsTableViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />

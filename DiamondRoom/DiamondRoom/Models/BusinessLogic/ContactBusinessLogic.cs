@@ -11,7 +11,7 @@ namespace DiamondRoom.Models.BusinessLogic
 {
     public class ContactBusinessLogic
     {
-        private DiamondRoomEntities1 context = new DiamondRoomEntities1();
+        private DiamondRoomEntities2 context = new DiamondRoomEntities2();
         public ObservableCollection<Contact> Contacts { get; set; }
 
         public string ErrorMessage { get; set; }

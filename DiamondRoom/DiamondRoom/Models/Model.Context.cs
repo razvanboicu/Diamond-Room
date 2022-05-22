@@ -15,10 +15,10 @@ namespace DiamondRoom.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class DiamondRoomEntities1 : DbContext
+    public partial class DiamondRoomEntities2 : DbContext
     {
-        public DiamondRoomEntities1()
-            : base("name=DiamondRoomEntities1")
+        public DiamondRoomEntities2()
+            : base("name=DiamondRoomEntities2")
         {
         }
     
@@ -58,27 +58,7 @@ namespace DiamondRoom.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAdress", id, countryParameter, cityParameter, streetParameter);
         }
-
-        public virtual int ModifyContact(Nullable<int> id, string email, string phoneNr1, string phoneNr2)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-
-            var emailParameter = email != null ?
-                new ObjectParameter("email", email) :
-                new ObjectParameter("email", typeof(string));
-
-            var phone1Parameter = phoneNr1 != null ?
-                new ObjectParameter("phoneNr1", phoneNr1) :
-                new ObjectParameter("phoneNr1", typeof(string));
-
-            var phone2Parameter = phoneNr2 != null ?
-                new ObjectParameter("phoneNr2", phoneNr2) :
-                new ObjectParameter("phoneNr2", typeof(string));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyContact", idParameter, emailParameter, phone1Parameter, phone2Parameter);
-        }
+    
         public virtual int AddContact(ObjectParameter id, string email, string phoneNr1, string phoneNr2)
         {
             var emailParameter = email != null ?
@@ -145,6 +125,27 @@ namespace DiamondRoom.Models
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteContact", idParameter);
+        }
+    
+        public virtual int ModifyContact(Nullable<int> id, string email, string phonenr1, string phonenr2)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var phonenr1Parameter = phonenr1 != null ?
+                new ObjectParameter("phonenr1", phonenr1) :
+                new ObjectParameter("phonenr1", typeof(string));
+    
+            var phonenr2Parameter = phonenr2 != null ?
+                new ObjectParameter("phonenr2", phonenr2) :
+                new ObjectParameter("phonenr2", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyContact", idParameter, emailParameter, phonenr1Parameter, phonenr2Parameter);
         }
     }
 }
