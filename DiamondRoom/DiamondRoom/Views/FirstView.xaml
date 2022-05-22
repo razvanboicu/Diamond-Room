@@ -54,7 +54,7 @@
 
         <!-- login/sign up/username -->
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 0 0 10">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10 0 0 10">
                 <materialDesign:PackIcon Kind="User" Width="Auto" Height="Auto" Foreground="Black"/>
                 <TextBlock Text="{Binding Username}" Width="Auto" Height="35" Foreground="Black" />
             </StackPanel>
@@ -69,7 +69,16 @@
                         Sign Up
                     </Button>
                 </StackPanel>
-
+                
+                <!-- admin menu -->
+                <StackPanel Margin="3" HorizontalAlignment="Center" Visibility="{Binding ShowAdminMenu, Converter={StaticResource BoolToVis}}">
+                    <Button Width="Auto" Style="{StaticResource MaterialDesignFlatAccentButton}"
+                                materialDesign:ButtonAssist.CornerRadius="10"
+                                Background="Black" Foreground="wHITE" ToolTip="Admin menu" Command="{Binding Path=AdminMenuCommand}">
+                        Admin Panel
+                    </Button>
+                </StackPanel>
+                
                 <!-- sign in button -->
                 <StackPanel Margin="3" HorizontalAlignment="Center" Visibility="{Binding ShowSignIn, Converter={StaticResource BoolToVis}}">
                     <Button Width="Auto" Style="{StaticResource MaterialDesignFlatAccentButton}"
@@ -81,7 +90,7 @@
                 <!-- sign in button -->
                 <StackPanel Margin="3" HorizontalAlignment="Center" Visibility="{Binding ShowLogOut, Converter={StaticResource BoolToVis}}">
                     <Button Width="Auto" Style="{StaticResource MaterialDesignFlatAccentButton}"
-                                materialDesign:ButtonAssist.CornerRadius="10"
+                                materialDesign:ButtonAssist.CornerRadius="10" Command="{Binding Path=LogOutCommand}"
                                 Background="Black" Foreground="wHITE" ToolTip="Create your own account now!">
                         Log Out
                     </Button>

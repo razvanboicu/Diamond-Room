@@ -32,7 +32,6 @@ namespace DiamondRoom.Models.BusinessLogic
                     return user;
                 }
             }
-            Console.WriteLine("nu a gasit pt" + usernameTyped+"\n"+ passwordTyped);
             return null;
         }
 
@@ -46,6 +45,7 @@ namespace DiamondRoom.Models.BusinessLogic
             newUser.fk_address = fkAdr;
             newUser.fk_contact = fkCont;
             newUser.accessLevel = 2;
+            //access levels: 0 = admin, 1=staff, 2= client, 3= guest
 
             if (string.IsNullOrEmpty(newUser.username) || string.IsNullOrEmpty(newUser.password) || string.IsNullOrEmpty(newUser.firstName) || string.IsNullOrEmpty(newUser.lastName))
             {

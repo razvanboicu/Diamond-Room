@@ -48,17 +48,17 @@
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="AddressMarkerOutline" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Name="txtCountry" Text ="{Binding ElementName=personsGrid, Path=SelectedItem.Country, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Country" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                    <TextBox Name="txtCountry" Text ="{Binding Country, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Country" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="AddressMarker" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Name="txtCity" Text ="{Binding ElementName=personsGrid, Path=SelectedItem.City, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="City" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                    <TextBox Name="txtCity" Text ="{Binding City, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="City" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">
                     <materialDesign:PackIcon Kind="GoogleStreetView" Width="25" Height="25" Foreground="White"></materialDesign:PackIcon>
-                    <TextBox Name="txtStreet" Text ="{Binding ElementName=personsGrid, Path=SelectedItem.Street, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Street" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
+                    <TextBox Name="txtStreet" Text ="{Binding Street, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Street" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" ></TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="10">

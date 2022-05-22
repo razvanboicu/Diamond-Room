@@ -78,6 +78,8 @@
     </ApplicationDefinition>
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\UpdateContactsCommand.cs" />
     <Compile Include="Converters\AddressConverter.cs" />
     <Compile Include="Converters\ContactConverter.cs" />
     <Compile Include="Converters\RegisterUserConverter.cs" />
@@ -147,11 +149,19 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AdminPanelViewModel.cs" />
+    <Compile Include="ViewModels\ContactsTableViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AdminPanelView.xaml.cs">
+      <DependentUpon>AdminPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContactsTableView.xaml.cs">
+      <DependentUpon>ContactsTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FirstView.xaml.cs">
       <DependentUpon>FirstView.xaml</DependentUpon>
     </Compile>
@@ -173,6 +183,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AdminPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContactsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FirstView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

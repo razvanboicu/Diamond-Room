@@ -58,7 +58,27 @@ namespace DiamondRoom.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddAdress", id, countryParameter, cityParameter, streetParameter);
         }
-    
+
+        public virtual int ModifyContact(Nullable<int> id, string email, string phoneNr1, string phoneNr2)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+
+            var phone1Parameter = phoneNr1 != null ?
+                new ObjectParameter("phoneNr1", phoneNr1) :
+                new ObjectParameter("phoneNr1", typeof(string));
+
+            var phone2Parameter = phoneNr2 != null ?
+                new ObjectParameter("phoneNr2", phoneNr2) :
+                new ObjectParameter("phoneNr2", typeof(string));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyContact", idParameter, emailParameter, phone1Parameter, phone2Parameter);
+        }
         public virtual int AddContact(ObjectParameter id, string email, string phoneNr1, string phoneNr2)
         {
             var emailParameter = email != null ?

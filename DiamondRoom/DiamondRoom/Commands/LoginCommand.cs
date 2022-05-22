@@ -14,8 +14,6 @@ namespace DiamondRoom.Commands
     public class LoginCommand : CommandBase
     {
         NavigationStore _navigationStore;
-        private string _user;
-        private string _password; 
         private LoginViewModel _loginViewModel;
         private UserBusinessLogic userBussinessLogic = new UserBusinessLogic();
         public LoginCommand(LoginViewModel loginViewModel, NavigationStore navigationStore)

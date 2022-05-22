@@ -29,7 +29,6 @@ namespace DiamondRoom.Commands
         public override void Execute(object parameter)
         {
             AddUser(parameter);
-
         }
 
         private void AddUser(object obj)

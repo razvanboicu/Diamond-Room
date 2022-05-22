@@ -18,10 +18,13 @@ namespace DiamondRoom.ViewModels
         private string _username;
         private bool _showSignUp;
         private bool _showSignIn;
-        private bool _showLogOut; 
+        private bool _showAdminMenu;
+        private bool _showLogOut;
 
-        private ContactBusinessLogic contactBL;
+        private ContactBusinessLogic contactBusinessLogic = new ContactBusinessLogic();
 
+        public ICommand AdminMenuCommand { get; }
+        public ICommand LogOutCommand { get; }
         public ICommand LoginCommand { get; }
         public ICommand SignUpCommand { get; }
         public FirstViewModel(NavigationStore navigationStore, User userLoggedIn)
@@ -29,7 +32,6 @@ namespace DiamondRoom.ViewModels
             if (userLoggedIn == null)
             {
                 _username = "Guest";
-
                 _showSignIn = true;
                 LoginCommand = new NavigateCommand<LoginViewModel>(navigationStore, () => new LoginViewModel(navigationStore));
 
@@ -39,25 +41,34 @@ namespace DiamondRoom.ViewModels
             else
             {
                 _userLoggedIn = userLoggedIn;
+                LogOutCommand = new NavigateCommand<FirstViewModel>(navigationStore, () => new FirstViewModel(navigationStore, null));
                 _username = "Hello, " + _userLoggedIn.firstName + " " + _userLoggedIn.lastName;
                 _showLogOut = true;
-            }
 
-            contactBL = new ContactBusinessLogic();
-            //contactBL.AddMethod(this);
-            ContactList = contactBL.GetAllContacts();
+                if (_userLoggedIn.accessLevel == 0)
+                {
+                    _showAdminMenu = true;
+                    AdminMenuCommand = new NavigateCommand<AdminPanelViewModel>(navigationStore, () => new AdminPanelViewModel(navigationStore, _userLoggedIn));
+                }
+            }
+            ContactList = contactBusinessLogic.GetAllContacts();
         }
 
         public ObservableCollection<Contact> ContactList
         {
-            get => contactBL.Contacts;
-            set => contactBL.Contacts = value;
+            get => contactBusinessLogic.Contacts;
+            set => contactBusinessLogic.Contacts = value;
         }
-     
+
         public bool ShowLogOut
         {
             get { return _showLogOut; }
             set { _showLogOut = value; }
+        }
+        public bool ShowAdminMenu
+        {
+            get { return _showAdminMenu; }
+            set { _showAdminMenu = value; }
         }
         public bool ShowSignUp
         {

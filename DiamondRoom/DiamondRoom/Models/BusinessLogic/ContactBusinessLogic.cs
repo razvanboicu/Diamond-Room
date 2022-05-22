@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,13 +72,34 @@ namespace DiamondRoom.Models.BusinessLogic
         public void DeleteMethod(object obj)
         {
             Contact contact = obj as Contact;
-            if (contact != null)
-                ErrorMessage = "Selecteaza un contact";
+            if (contact == null)
+            {
+                ErrorMessage = "Selecteaza un contact!";
+            }
             else
             {
-                context.DeleteContact(contact.id);
+                    context.Contacts.Remove(contact);
+                    context.SaveChanges();
+                    Contacts.Remove(contact);
+                    ErrorMessage = "";
+            }
+        }
+
+        public void UpdateMethod(object obj)
+        {
+            Contact con = obj as Contact;
+            if (con == null)
+            {
+                ErrorMessage = "Selecteaza un contact!";
+            }
+            else if (string.IsNullOrEmpty(con.email) && string.IsNullOrEmpty(con.phoneNr1) && string.IsNullOrEmpty(con.phoneNr2))
+            {
+                ErrorMessage = "Precizeaza noile campuri!";
+            }
+            else
+            {
+                context.ModifyContact(con.id, con.email, con.phoneNr1, con.phoneNr2);
                 context.SaveChanges();
-                Contacts.Remove(contact);
                 ErrorMessage = "";
             }
         }
