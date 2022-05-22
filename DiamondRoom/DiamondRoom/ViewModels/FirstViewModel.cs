@@ -39,6 +39,7 @@ namespace DiamondRoom.ViewModels
             else
             {
                 _userLoggedIn = userLoggedIn;
+                _username = "Hello, " + _userLoggedIn.firstName + " " + _userLoggedIn.lastName;
                 _showLogOut = true;
             }
 

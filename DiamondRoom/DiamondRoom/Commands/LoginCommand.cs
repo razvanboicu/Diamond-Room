@@ -15,18 +15,18 @@ namespace DiamondRoom.Commands
     {
         NavigationStore _navigationStore;
         private string _user;
-        private string _password;
+        private string _password; 
+        private LoginViewModel _loginViewModel;
         private UserBusinessLogic userBussinessLogic = new UserBusinessLogic();
-        public LoginCommand(NavigationStore navigationStore, string user, string password)
+        public LoginCommand(LoginViewModel loginViewModel, NavigationStore navigationStore)
         {
-            _user = user;
-            _password = password;
-            Console.WriteLine("CMD: "+_user+"\n"+_password);
             _navigationStore = navigationStore;
+            _loginViewModel = loginViewModel;
         }
         public override void Execute(object parameter)
         {
-            User response = userBussinessLogic.CheckIfUserExists(_user, _password);
+            Console.WriteLine(_loginViewModel.Username + "---" + _loginViewModel.Password);
+            User response = userBussinessLogic.CheckIfUserExists(_loginViewModel.Username, _loginViewModel.Password);
             if (response != null)
             {
                 new NavigateCommand<FirstViewModel>(_navigationStore, () => new FirstViewModel(_navigationStore, response)).Execute(this);

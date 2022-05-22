@@ -32,10 +32,10 @@ namespace DiamondRoom.Models.BusinessLogic
                     return user;
                 }
             }
-            Console.WriteLine("nu a gasit pt"+usernameTyped+"\n"+passwordTyped);
+            Console.WriteLine("nu a gasit pt" + usernameTyped+"\n"+ passwordTyped);
             return null;
-        
         }
+
         public void AddUser(string userr, string pass, string firstname, string lastname, int fkAdr, int fkCont)
         {
             User newUser = new User();
