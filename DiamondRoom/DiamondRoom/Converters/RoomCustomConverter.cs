@@ -9,19 +9,22 @@ using System.Windows.Data;
 
 namespace DiamondRoom.Converters
 {
-    public class UserConverter : IMultiValueConverter
+    public class RoomCustomConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] != null && values[1] != null
-                && values[2] != null && values[3] != null)
+            if (values[0] != null && values[1] != null)
             {
-                return new User()
+                bool res;
+                if (values[0].ToString().Equals("True"))
+                    res = true;
+                else res = false;
+                return new RoomCustom()
                 {
-                    firstName = values[0].ToString(),
-                    lastName = values[1].ToString(),
-                    username = values[2].ToString(),
-                    password = values[3].ToString(),
+                    id = -1,
+                    available = true,
+                    type = values[1].ToString(),
+                    price = -1
                 };
             }
             else

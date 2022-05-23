@@ -15,10 +15,10 @@ namespace DiamondRoom.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class DiamondRoomEntities4 : DbContext
+    public partial class DiamondRoomEntities6 : DbContext
     {
-        public DiamondRoomEntities4()
-            : base("name=DiamondRoomEntities4")
+        public DiamondRoomEntities6()
+            : base("name=DiamondRoomEntities6")
         {
         }
     
@@ -180,6 +180,36 @@ namespace DiamondRoom.Models
                 new ObjectParameter("description", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyFeature", idParameter, descriptionParameter);
+        }
+    
+        public virtual int ModifyRoomType(Nullable<int> id, string type, Nullable<double> price)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var typeParameter = type != null ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(string));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("price", price) :
+                new ObjectParameter("price", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyRoomType", idParameter, typeParameter, priceParameter);
+        }
+    
+        public virtual int UpdateAvailabilityRoom(Nullable<int> id, Nullable<bool> available)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var availableParameter = available.HasValue ?
+                new ObjectParameter("available", available) :
+                new ObjectParameter("available", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateAvailabilityRoom", idParameter, availableParameter);
         }
     }
 }

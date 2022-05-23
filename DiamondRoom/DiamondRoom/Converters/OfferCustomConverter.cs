@@ -9,35 +9,38 @@ using System.Windows.Data;
 
 namespace DiamondRoom.Converters
 {
-    public class ExtraFeatureConverter : IMultiValueConverter
+    public class OfferCustomConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] != null && values[1] != null && values[2] != null)
+            if (values[0] != null && values[1] != null && values[2] != null
+                && values[3] != null && values[4] != null && values[5] != null)
             {
                 try
                 {
-                    bool answ;
-                    if (values[1].ToString().Equals("False"))
-                        answ = false;
-                    else answ = true;
                     int numVal = Int32.Parse(values[0].ToString());
-                    //Console.WriteLine(numVal);
-                    Console.WriteLine("s-a intrat in converter");
-                    return new Extra_features()
+                    //int intPrice = Int32.Parse(values[2].ToString());
+                    int discount = Int32.Parse(values[3].ToString());
+    
+                    return new OfferCustom()
                     {
-                        price = (int) numVal, //trebuie sa ma gandesc cum convertesc string la int
-                        deleted = answ,
-                        service = values[2].ToString()
+
+                        id = numVal,
+                        type = values[1].ToString(),
+                        price = -1,
+                        discount = discount,
+                        available = false,
+                        obs = values[5].ToString(),
                     };
                 }
-                catch (FormatException e)
+                catch (Exception ex)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("GRESITTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
                     return null;
                 }
-                
             }
+
             else
             {
                 return null;

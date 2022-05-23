@@ -76,6 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddOfferCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\RegisterCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
@@ -84,7 +85,10 @@
     <Compile Include="Converters\ContactConverter.cs" />
     <Compile Include="Converters\ExtraFeatureConverter.cs" />
     <Compile Include="Converters\FeatureConverter.cs" />
+    <Compile Include="Converters\OfferCustomConverter.cs" />
     <Compile Include="Converters\RegisterUserConverter.cs" />
+    <Compile Include="Converters\RoomCustomConverter.cs" />
+    <Compile Include="Converters\RoomTypeConverter.cs" />
     <Compile Include="Converters\UserConverter.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
@@ -94,6 +98,9 @@
     <Compile Include="Models\BusinessLogic\AddressBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\ExtraFeatureBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\FeatureBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\OfferBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\RoomBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\RoomTypeBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\UserBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\ContactBusinessLogic.cs" />
     <Compile Include="Models\Contact.cs">
@@ -123,6 +130,7 @@
     <Compile Include="Models\Offer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OfferCustom.cs" />
     <Compile Include="Models\Payment.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -132,6 +140,7 @@
     <Compile Include="Models\Room.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RoomCustom.cs" />
     <Compile Include="Models\Rooms_features.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -160,7 +169,10 @@
     <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OffersViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\RoomsTableViewModel.cs" />
+    <Compile Include="ViewModels\RoomTypeViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AdminPanelView.xaml.cs">
       <DependentUpon>AdminPanelView.xaml</DependentUpon>
@@ -180,8 +192,17 @@
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OffersView.xaml.cs">
+      <DependentUpon>OffersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomsTableView.xaml.cs">
+      <DependentUpon>RoomsTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomTypeView.xaml.cs">
+      <DependentUpon>RoomTypeView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -219,7 +240,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\OffersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RoomsTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RoomTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

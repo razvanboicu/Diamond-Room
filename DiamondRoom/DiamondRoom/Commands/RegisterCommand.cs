@@ -18,8 +18,6 @@ namespace DiamondRoom.Commands
         private ContactBusinessLogic contactBusinessLogic = new ContactBusinessLogic();
         private UserBusinessLogic userBusinessLogic = new UserBusinessLogic();  
         
-        static public string errMsj;
-
         public RegisterCommand(RegisterViewModel registerViewModel, NavigationStore navigationStore)
         {
             _registerViewModel = registerViewModel;

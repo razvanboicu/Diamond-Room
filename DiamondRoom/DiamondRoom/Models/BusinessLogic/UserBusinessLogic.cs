@@ -10,9 +10,7 @@ namespace DiamondRoom.Models.BusinessLogic
 {
     public class UserBusinessLogic
     {
-        //private ContactBusinessLogic contactBusinessLogic;
-        //private AddressBusinessLogic addressBusinessLogic;
-        private DiamondRoomEntities4 context = new DiamondRoomEntities4();
+        private DiamondRoomEntities6 context = new DiamondRoomEntities6();
         public ObservableCollection<User> Users { get; set; }
 
         public string ErrorMessage { get; set; }

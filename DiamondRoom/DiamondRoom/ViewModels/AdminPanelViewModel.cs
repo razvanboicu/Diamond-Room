@@ -19,6 +19,9 @@ namespace DiamondRoom.ViewModels
         public ICommand BackCommand { get; }
         public ICommand FeaturesTableCommand { get; }
         public ICommand ExtraFeaturesTableCommand { get; }
+        public ICommand RoomsTableCommand { get; }
+        public ICommand RoomTypesCommand { get; }
+        public ICommand OffersCommand { get; }
         public AdminPanelViewModel(NavigationStore navigationStore, User admin)
         {
             _admin = admin;
@@ -27,6 +30,9 @@ namespace DiamondRoom.ViewModels
             ContactsTableCommand = new NavigateCommand<ContactsTableViewModel>(_navigationStore, () => new ContactsTableViewModel(_navigationStore, _admin));
             BackCommand = new NavigateCommand<FirstViewModel>(_navigationStore, () => new FirstViewModel(_navigationStore, _admin));
             ExtraFeaturesTableCommand = new NavigateCommand<ExtraFeatureTableViewModel>(_navigationStore, () => new ExtraFeatureTableViewModel(_navigationStore, _admin));
+            RoomsTableCommand = new NavigateCommand<RoomsTableViewModel>(_navigationStore, () => new RoomsTableViewModel(_navigationStore, _admin));
+            RoomTypesCommand = new NavigateCommand<RoomTypeViewModel>(_navigationStore, () => new RoomTypeViewModel(_navigationStore, _admin));
+            OffersCommand = new NavigateCommand<OffersViewModel>(_navigationStore, () => new OffersViewModel(_navigationStore, _admin));
         }
     }
 }

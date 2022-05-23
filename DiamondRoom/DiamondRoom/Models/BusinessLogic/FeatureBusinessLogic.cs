@@ -10,7 +10,7 @@ namespace DiamondRoom.Models.BusinessLogic
 {
     public class FeatureBusinessLogic
     {
-        private DiamondRoomEntities4 context = new DiamondRoomEntities4();
+        private DiamondRoomEntities6 context = new DiamondRoomEntities6();
         public ObservableCollection<Feature> Features { get; set; }
 
         public FeatureBusinessLogic()

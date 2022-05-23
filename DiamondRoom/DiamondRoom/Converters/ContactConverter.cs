@@ -17,9 +17,9 @@ namespace DiamondRoom.Converters
             {
                 return new Contact()
                 {
-                    phoneNr1 = values[0].ToString(),
-                    phoneNr2 = values[1].ToString(),
-                    email = values[2].ToString()
+                    email = values[0].ToString(),
+                    phoneNr1 = values[1].ToString(),
+                    phoneNr2 = values[2].ToString()
                 };
             }
             else

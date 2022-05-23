@@ -32,6 +32,15 @@
             <DataTemplate DataType="{x:Type viewmodels:ExtraFeatureTableViewModel}">
                 <views:ExtraFeatureTableView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:RoomsTableViewModel}">
+                <views:RoomsTableView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:RoomTypeViewModel}">
+                <views:RoomTypeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:OffersViewModel}">
+                <views:OffersView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

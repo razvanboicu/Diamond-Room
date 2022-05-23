@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7c019d0164f54f8cb550334475f1ea3b" Name="Diagram1">
+      <Diagram DiagramId="4acbd4d91d2c4f279a0bf5a28a893b65" Name="Diagram1">
         <EntityTypeShape EntityType="DiamondRoomModel.Address" Width="1.5" PointX="10.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DiamondRoomModel.Contact" Width="1.5" PointX="10.75" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DiamondRoomModel.Extra_features" Width="1.5" PointX="8.75" PointY="10" IsExpanded="true" />

@@ -19,19 +19,6 @@ namespace DiamondRoom.Models
         public string _city { get; set; }
         public string _street { get; set; }
 
-        //public UserCustom(string user, string password, string first, string last, string email, string phone1, string phone2, string countr, string city, string street)
-        //{
-        //    _username = user;
-        //    _password = password;
-        //    _firstName = first;
-        //    _lastName = last;
-        //    _email = email;
-        //    _phoneNr1 = phone1;
-        //    _phoneNr2 = phone2;
-        //    _country = countr;
-        //    _city = city;
-        //    _street = street;
-        //}
 
     }
 }

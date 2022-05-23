@@ -321,6 +321,15 @@
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="description" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="ModifyRoomType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="type" Type="varchar" Mode="In" />
+          <Parameter Name="price" Type="float" Mode="In" />
+        </Function>
+        <Function Name="UpdateAvailabilityRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="available" Type="bit" Mode="In" />
+        </Function>
         <EntityContainer Name="DiamondRoomModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
@@ -685,7 +694,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DiamondRoomEntities4" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DiamondRoomEntities6" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Extra_features" EntityType="Self.Extra_features" />
@@ -793,13 +802,22 @@
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="description" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ModifyRoomType">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="price" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateAvailabilityRoom">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="available" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DiamondRoomModelStoreContainer" CdmEntityContainer="DiamondRoomEntities4">
+        <EntityContainerMapping StorageEntityContainer="DiamondRoomModelStoreContainer" CdmEntityContainer="DiamondRoomEntities6">
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="DiamondRoomModel.Address">
               <MappingFragment StoreEntitySet="Address">
@@ -949,6 +967,8 @@
           <FunctionImportMapping FunctionImportName="ModifyContact" FunctionName="DiamondRoomModel.Store.ModifyContact" />
           <FunctionImportMapping FunctionImportName="ModifyExtraFeature" FunctionName="DiamondRoomModel.Store.ModifyExtraFeature" />
           <FunctionImportMapping FunctionImportName="ModifyFeature" FunctionName="DiamondRoomModel.Store.ModifyFeature" />
+          <FunctionImportMapping FunctionImportName="ModifyRoomType" FunctionName="DiamondRoomModel.Store.ModifyRoomType" />
+          <FunctionImportMapping FunctionImportName="UpdateAvailabilityRoom" FunctionName="DiamondRoomModel.Store.UpdateAvailabilityRoom" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

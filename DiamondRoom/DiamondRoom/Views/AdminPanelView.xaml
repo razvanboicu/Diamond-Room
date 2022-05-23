@@ -59,7 +59,31 @@
             <StackPanel Margin="10" HorizontalAlignment="Center">
                 <Button Content="Extra Features table" Width="Auto" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="Black"
-                                Background="Black" Foreground="White" ToolTip="CRUD for features table" Command="{Binding Path = ExtraFeaturesTableCommand}">
+                                Background="Black" Foreground="White" ToolTip="CRUD for extra features table" Command="{Binding Path = ExtraFeaturesTableCommand}">
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Margin="10" HorizontalAlignment="Center">
+                <Button Content="Rooms" Width="Auto" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="Black"
+                                Background="Black" Foreground="White" ToolTip="You can add a new room and modify the disponiblity" Command="{Binding Path = RoomsTableCommand}">
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Margin="10" HorizontalAlignment="Center">
+                <Button Content="Room Types" Width="Auto" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="Black"
+                                Background="Black" Foreground="White" ToolTip="You can add a new room type or modify existing ones" Command="{Binding Path = RoomTypesCommand}">
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Margin="10" HorizontalAlignment="Center">
+                <Button Content="Offers *" Width="Auto" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="Black"
+                                Background="Black" Foreground="White" ToolTip="Manage offers" Command="{Binding Path = OffersCommand}">
                 </Button>
             </StackPanel>
         </StackPanel>

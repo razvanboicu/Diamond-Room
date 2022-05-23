@@ -10,7 +10,7 @@ namespace DiamondRoom.Models.BusinessLogic
 {
     public class ExtraFeatureBusinessLogic
     {
-        private DiamondRoomEntities4 context = new DiamondRoomEntities4();
+        private DiamondRoomEntities6 context = new DiamondRoomEntities6();
         public ObservableCollection<Extra_features> ExtraFeatures { get; set; }
 
         public ExtraFeatureBusinessLogic()
@@ -34,7 +34,7 @@ namespace DiamondRoom.Models.BusinessLogic
             Extra_features feature = obj as Extra_features;
             if (feature != null)
             {
-                if (string.IsNullOrEmpty(feature.service) && feature.deleted != null && feature.price != null )
+                if (string.IsNullOrEmpty(feature.service) && feature.price != null )
                 {
                     MessageBox.Show("Completeaza campurile corespunzator!");
                 }
@@ -42,7 +42,7 @@ namespace DiamondRoom.Models.BusinessLogic
                 {
                     //context.AddPerson(pers.Name, pers.Address, new ObjectParameter("persId", pers.PersonID));
                     //fara a utiliza procedura stocata AddPerson
-                    context.Extra_features.Add(new Extra_features() { price = feature.price,  deleted = feature.deleted, service = feature.service}); 
+                    context.Extra_features.Add(new Extra_features() { price = feature.price, deleted = feature.deleted, service = feature.service}); 
                     context.SaveChanges();
                     feature.id = context.Extra_features.Max(item => item.id);
                     ExtraFeatures.Add(feature);
