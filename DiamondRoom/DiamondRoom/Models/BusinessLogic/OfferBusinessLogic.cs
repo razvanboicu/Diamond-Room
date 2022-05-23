@@ -71,9 +71,9 @@ namespace DiamondRoom.Models.BusinessLogic
                                     obs = offer.info
                                 }) ;
                             }
-                            break;
+                            
                         }
-                        break;
+                       
                     }
                 }
             }

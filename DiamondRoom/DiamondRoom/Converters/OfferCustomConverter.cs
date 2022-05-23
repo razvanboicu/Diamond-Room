@@ -13,7 +13,7 @@ namespace DiamondRoom.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] != null && values[1] != null && values[2] != null
+            if (values[0] != null && values[1] != null 
                 && values[3] != null && values[4] != null && values[5] != null)
             {
                 try
@@ -21,7 +21,7 @@ namespace DiamondRoom.Converters
                     int numVal = Int32.Parse(values[0].ToString());
                     //int intPrice = Int32.Parse(values[2].ToString());
                     int discount = Int32.Parse(values[3].ToString());
-    
+
                     return new OfferCustom()
                     {
 
