@@ -10,7 +10,7 @@ namespace DiamondRoom.Models.BusinessLogic
 {
     public class RoomBusinessLogic
     {
-        private DiamondRoomEntities6 context = new DiamondRoomEntities6();
+        private DiamondRoomEntities7 context = new DiamondRoomEntities7();
         public ObservableCollection<Room> Rooms { get; set; }
         public ObservableCollection<RoomCustom> RoomsCustom { get; set; }
 

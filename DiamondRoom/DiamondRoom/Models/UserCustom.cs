@@ -19,6 +19,5 @@ namespace DiamondRoom.Models
         public string _city { get; set; }
         public string _street { get; set; }
 
-
     }
 }

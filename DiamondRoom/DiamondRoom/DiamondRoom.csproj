@@ -87,6 +87,7 @@
     <Compile Include="Converters\FeatureConverter.cs" />
     <Compile Include="Converters\OfferCustomConverter.cs" />
     <Compile Include="Converters\RegisterUserConverter.cs" />
+    <Compile Include="Converters\ReservationsCustomConverter.cs" />
     <Compile Include="Converters\RoomCustomConverter.cs" />
     <Compile Include="Converters\RoomTypeConverter.cs" />
     <Compile Include="Converters\UserConverter.cs" />
@@ -95,10 +96,12 @@
     <Compile Include="Models\Address.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Advertisement.cs" />
     <Compile Include="Models\BusinessLogic\AddressBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\ExtraFeatureBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\FeatureBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\OfferBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\ReservationBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\RoomBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\RoomTypeBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\UserBusinessLogic.cs" />
@@ -137,6 +140,7 @@
     <Compile Include="Models\Reservation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReservationCustom.cs" />
     <Compile Include="Models\Room.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -167,12 +171,15 @@
     <Compile Include="ViewModels\ExtraFeatureTableViewModel.cs" />
     <Compile Include="ViewModels\FeaturesTableViewModel.cs" />
     <Compile Include="ViewModels\FirstViewModel.cs" />
+    <Compile Include="ViewModels\HistoryReservationsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\OffersViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\ReservationsRoomViewModel.cs" />
     <Compile Include="ViewModels\RoomsTableViewModel.cs" />
     <Compile Include="ViewModels\RoomTypeViewModel.cs" />
+    <Compile Include="ViewModels\SeeOfferViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AdminPanelView.xaml.cs">
       <DependentUpon>AdminPanelView.xaml</DependentUpon>
@@ -189,6 +196,9 @@
     <Compile Include="Views\FirstView.xaml.cs">
       <DependentUpon>FirstView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\HistoryReservationsView.xaml.cs">
+      <DependentUpon>HistoryReservationsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -198,11 +208,17 @@
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReservationRoomsView.xaml.cs">
+      <DependentUpon>ReservationRoomsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RoomsTableView.xaml.cs">
       <DependentUpon>RoomsTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RoomTypeView.xaml.cs">
       <DependentUpon>RoomTypeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeeOfferView.xaml.cs">
+      <DependentUpon>SeeOfferView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +252,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\HistoryReservationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -248,11 +268,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ReservationRoomsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RoomsTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RoomTypeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SeeOfferView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

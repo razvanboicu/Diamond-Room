@@ -22,6 +22,7 @@ namespace DiamondRoom.ViewModels
         public ICommand RoomsTableCommand { get; }
         public ICommand RoomTypesCommand { get; }
         public ICommand OffersCommand { get; }
+        public ICommand ActiveReservations { get; }
         public AdminPanelViewModel(NavigationStore navigationStore, User admin)
         {
             _admin = admin;
@@ -33,6 +34,7 @@ namespace DiamondRoom.ViewModels
             RoomsTableCommand = new NavigateCommand<RoomsTableViewModel>(_navigationStore, () => new RoomsTableViewModel(_navigationStore, _admin));
             RoomTypesCommand = new NavigateCommand<RoomTypeViewModel>(_navigationStore, () => new RoomTypeViewModel(_navigationStore, _admin));
             OffersCommand = new NavigateCommand<OffersViewModel>(_navigationStore, () => new OffersViewModel(_navigationStore, _admin));
+            ActiveReservations = new NavigateCommand<ReservationsRoomViewModel>(_navigationStore, () => new ReservationsRoomViewModel(_navigationStore, _admin));
         }
     }
 }

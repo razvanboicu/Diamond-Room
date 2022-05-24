@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace DiamondRoom.ViewModels
@@ -20,15 +21,21 @@ namespace DiamondRoom.ViewModels
         private bool _showSignIn;
         private bool _showAdminMenu;
         private bool _showLogOut;
+        private bool _showReservations;
+        private bool _showHistory;
 
-        private ContactBusinessLogic contactBusinessLogic = new ContactBusinessLogic();
+        private NavigationStore _navigationStore;
+
+        private OfferBusinessLogic offerBusinessLogic = new OfferBusinessLogic();
 
         public ICommand AdminMenuCommand { get; }
         public ICommand LogOutCommand { get; }
         public ICommand LoginCommand { get; }
         public ICommand SignUpCommand { get; }
+        public ICommand ReservationsCommand { get; }
         public FirstViewModel(NavigationStore navigationStore, User userLoggedIn)
         {
+            _navigationStore = navigationStore;
             if (userLoggedIn == null)
             {
                 _username = "Guest";
@@ -40,24 +47,79 @@ namespace DiamondRoom.ViewModels
             }
             else
             {
+                _showHistory = true;
                 _userLoggedIn = userLoggedIn;
                 LogOutCommand = new NavigateCommand<FirstViewModel>(navigationStore, () => new FirstViewModel(navigationStore, null));
                 _username = "Hello, " + _userLoggedIn.firstName + " " + _userLoggedIn.lastName;
                 _showLogOut = true;
 
-                if (_userLoggedIn.accessLevel == 0)
+                if (_userLoggedIn.accessLevel == 0) // 0 = admin
                 {
                     _showAdminMenu = true;
                     AdminMenuCommand = new NavigateCommand<AdminPanelViewModel>(navigationStore, () => new AdminPanelViewModel(navigationStore, _userLoggedIn));
                 }
+                else if (_userLoggedIn.accessLevel == 1) // 1 = angajat
+                {
+                    _showReservations = true;
+                    ReservationsCommand = new NavigateCommand<ReservationsRoomViewModel>(navigationStore, () => new ReservationsRoomViewModel(navigationStore, _userLoggedIn));
+                } 
             }
-            ContactList = contactBusinessLogic.GetAllContacts();
+            Advertisements = offerBusinessLogic.GetAdvertisments();
+        }
+        #region Command Members
+        public void SeeOfferMethod(object obj)
+        {
+            if (obj != null)
+                new NavigateCommand<HistoryReservationsViewModel>(_navigationStore, () => new HistoryReservationsViewModel(_navigationStore, _userLoggedIn)).Execute(this);
+            else MessageBox.Show("Selecteaza o oferta din lista!");
         }
 
-        public ObservableCollection<Contact> ContactList
+        public void SeeHistoryReservations(object obj)
         {
-            get => contactBusinessLogic.Contacts;
-            set => contactBusinessLogic.Contacts = value;
+                new NavigateCommand<HistoryReservationsViewModel>(_navigationStore, () => new HistoryReservationsViewModel(_navigationStore, _userLoggedIn)).Execute(this); 
+        }
+        private ICommand historyReservations;
+        public ICommand HistoryReservations
+        {
+            get
+            {
+                if (historyReservations == null)
+                {
+                    historyReservations = new RelayCommand(SeeHistoryReservations);
+                }
+                return historyReservations;
+            }
+        }
+
+        private ICommand seeOfferCommand;
+        public ICommand SeeOfferCommand
+        {
+            get
+            {
+                if (seeOfferCommand == null)
+                {
+                    seeOfferCommand = new RelayCommand(SeeOfferMethod);
+                }
+                return seeOfferCommand;
+            }
+        }
+
+        #endregion
+
+        public bool ShowHistory
+        {
+            get { return _showHistory; }
+            set { _showHistory = value; }
+        }
+        public bool ShowReservations
+        {
+            get { return _showReservations; }
+            set { _showReservations = value; }
+        }
+        public ObservableCollection<Advertisement> Advertisements
+        {
+            get => offerBusinessLogic.Advertisements;
+            set => offerBusinessLogic.Advertisements = value;
         }
 
         public bool ShowLogOut

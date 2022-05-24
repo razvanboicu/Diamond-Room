@@ -15,10 +15,10 @@ namespace DiamondRoom.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class DiamondRoomEntities6 : DbContext
+    public partial class DiamondRoomEntities7 : DbContext
     {
-        public DiamondRoomEntities6()
-            : base("name=DiamondRoomEntities6")
+        public DiamondRoomEntities7()
+            : base("name=DiamondRoomEntities7")
         {
         }
     
@@ -118,15 +118,6 @@ namespace DiamondRoom.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUser", id, usernameParameter, passwordParameter, firstnameParameter, lastnameParameter, acceslevelParameter, fkcontactParameter, fkaddressParameter);
         }
     
-        public virtual int DeleteContact(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteContact", idParameter);
-        }
-    
         public virtual int ModifyContact(Nullable<int> id, string email, string phonenr1, string phonenr2)
         {
             var idParameter = id.HasValue ?
@@ -197,6 +188,19 @@ namespace DiamondRoom.Models
                 new ObjectParameter("price", typeof(double));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyRoomType", idParameter, typeParameter, priceParameter);
+        }
+    
+        public virtual int ModifyStatusRoomReservation(Nullable<int> id, string status)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyStatusRoomReservation", idParameter, statusParameter);
         }
     
         public virtual int UpdateAvailabilityRoom(Nullable<int> id, Nullable<bool> available)

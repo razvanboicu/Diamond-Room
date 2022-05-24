@@ -302,9 +302,6 @@
           <Parameter Name="fkcontact" Type="int" Mode="In" />
           <Parameter Name="fkaddress" Type="int" Mode="In" />
         </Function>
-        <Function Name="DeleteContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
         <Function Name="ModifyContact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="email" Type="varchar" Mode="In" />
@@ -325,6 +322,10 @@
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="type" Type="varchar" Mode="In" />
           <Parameter Name="price" Type="float" Mode="In" />
+        </Function>
+        <Function Name="ModifyStatusRoomReservation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="status" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UpdateAvailabilityRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -694,7 +695,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DiamondRoomEntities6" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DiamondRoomEntities7" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="Self.Address" />
           <EntitySet Name="Contacts" EntityType="Self.Contact" />
           <EntitySet Name="Extra_features" EntityType="Self.Extra_features" />
@@ -783,9 +784,6 @@
             <Parameter Name="fkcontact" Mode="In" Type="Int32" />
             <Parameter Name="fkaddress" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="DeleteContact">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="ModifyContact">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="email" Mode="In" Type="String" />
@@ -807,6 +805,10 @@
             <Parameter Name="type" Mode="In" Type="String" />
             <Parameter Name="price" Mode="In" Type="Double" />
           </FunctionImport>
+          <FunctionImport Name="ModifyStatusRoomReservation">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="UpdateAvailabilityRoom">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="available" Mode="In" Type="Boolean" />
@@ -817,7 +819,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DiamondRoomModelStoreContainer" CdmEntityContainer="DiamondRoomEntities6">
+        <EntityContainerMapping StorageEntityContainer="DiamondRoomModelStoreContainer" CdmEntityContainer="DiamondRoomEntities7">
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="DiamondRoomModel.Address">
               <MappingFragment StoreEntitySet="Address">
@@ -963,11 +965,11 @@
           <FunctionImportMapping FunctionImportName="AddContact" FunctionName="DiamondRoomModel.Store.AddContact" />
           <FunctionImportMapping FunctionImportName="AddFeature" FunctionName="DiamondRoomModel.Store.AddFeature" />
           <FunctionImportMapping FunctionImportName="AddUser" FunctionName="DiamondRoomModel.Store.AddUser" />
-          <FunctionImportMapping FunctionImportName="DeleteContact" FunctionName="DiamondRoomModel.Store.DeleteContact" />
           <FunctionImportMapping FunctionImportName="ModifyContact" FunctionName="DiamondRoomModel.Store.ModifyContact" />
           <FunctionImportMapping FunctionImportName="ModifyExtraFeature" FunctionName="DiamondRoomModel.Store.ModifyExtraFeature" />
           <FunctionImportMapping FunctionImportName="ModifyFeature" FunctionName="DiamondRoomModel.Store.ModifyFeature" />
           <FunctionImportMapping FunctionImportName="ModifyRoomType" FunctionName="DiamondRoomModel.Store.ModifyRoomType" />
+          <FunctionImportMapping FunctionImportName="ModifyStatusRoomReservation" FunctionName="DiamondRoomModel.Store.ModifyStatusRoomReservation" />
           <FunctionImportMapping FunctionImportName="UpdateAvailabilityRoom" FunctionName="DiamondRoomModel.Store.UpdateAvailabilityRoom" />
         </EntityContainerMapping>
       </Mapping>

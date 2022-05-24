@@ -41,6 +41,15 @@
             <DataTemplate DataType="{x:Type viewmodels:OffersViewModel}">
                 <views:OffersView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ReservationsRoomViewModel}">
+                <views:ReservationRoomsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SeeOfferViewModel}">
+                <views:SeeOfferView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:HistoryReservationsViewModel}">
+                <views:HistoryReservationsView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

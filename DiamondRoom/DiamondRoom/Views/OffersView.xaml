@@ -34,7 +34,7 @@
                     <DataGridTextColumn Header="Camera type" Binding="{Binding type}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Base price" Binding="{Binding price}"  IsReadOnly="True"/>
                     <DataGridTextColumn Header="Discount (%)" Binding="{Binding discount}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Available" Binding="{Binding available}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Deleted" Binding="{Binding available}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Obs" Binding="{Binding obs}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
@@ -84,7 +84,7 @@
                          Text="{Binding ElementName=offersGrid, Path=SelectedItem.discount, UpdateSourceTrigger=PropertyChanged}" />
             </WrapPanel>
             <WrapPanel Margin="0,15,0,0">
-                <Label Width="150" FontSize="15">Available (True/False)*</Label>
+                <Label Width="150" FontSize="15">Deleted (True/False)*</Label>
                 <TextBox Name="txtAvailable" Width="50" HorizontalAlignment="Left"
                          Text="{Binding ElementName=offersGrid, Path=SelectedItem.available, UpdateSourceTrigger=PropertyChanged}" />
             </WrapPanel>

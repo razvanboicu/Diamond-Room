@@ -5,10 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DiamondRoom.Views"
              xmlns:localviewmodels="clr-namespace:DiamondRoom.ViewModels"
+              xmlns:localConverter="clr-namespace:DiamondRoom.Converters"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920" Background="#e3e3e3">
-    
+
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
@@ -28,8 +29,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="180"/>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="45"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="1">
@@ -69,7 +71,13 @@
                         Sign Up
                     </Button>
                 </StackPanel>
-                
+                <StackPanel Margin="3" HorizontalAlignment="Center" Visibility="{Binding ShowReservations, Converter={StaticResource BoolToVis}}">
+                    <Button Width="Auto" Style="{StaticResource MaterialDesignFlatAccentButton}"
+                                materialDesign:ButtonAssist.CornerRadius="10"
+                                Background="Black" Foreground="wHITE" ToolTip="See all reservations" Command="{Binding Path=ReservationsCommand}">
+                        Reservations
+                    </Button>
+                </StackPanel>
                 <!-- admin menu -->
                 <StackPanel Margin="3" HorizontalAlignment="Center" Visibility="{Binding ShowAdminMenu, Converter={StaticResource BoolToVis}}">
                     <Button Width="Auto" Style="{StaticResource MaterialDesignFlatAccentButton}"
@@ -78,7 +86,7 @@
                         Admin Panel
                     </Button>
                 </StackPanel>
-                
+
                 <!-- sign in button -->
                 <StackPanel Margin="3" HorizontalAlignment="Center" Visibility="{Binding ShowSignIn, Converter={StaticResource BoolToVis}}">
                     <Button Width="Auto" Style="{StaticResource MaterialDesignFlatAccentButton}"
@@ -100,15 +108,51 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1">
-
-            <DataGrid Name="contactsGrid"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="250"
-                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ContactList}">
+            <DataGrid Name="offertsGrid"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="250"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Advertisements}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Email" Binding="{Binding email}"/>
-                    <DataGridTextColumn Header="Phone(1)" Binding="{Binding phoneNr1}" />
-                    <DataGridTextColumn Header="Phone(2)" Binding="{Binding phoneNr2}" />
+                    <DataGridTextColumn Header="Oferta -> NR Camera" Binding="{Binding idRoom}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Discount (%)" Binding="{Binding discount}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Tipul camerei" Binding="{Binding roomType}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Descriere" Binding="{Binding info}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
+
         </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1">
+            <StackPanel.Resources>
+                <localConverter:ExtraFeatureConverter x:Key="extraFeatureConverter"/>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="Auto" Style="{StaticResource MaterialDesignFlatAccentButton}"  Margin="0 0 50 0"
+                                materialDesign:ButtonAssist.CornerRadius="10"
+                                Background="Black" Foreground="wHITE" ToolTip="See your booking history" Command="{Binding Path=SeeOfferCommand}">
+                    View selected offer
+                </Button>
+                <Button Width="Auto" Style="{StaticResource MaterialDesignFlatAccentButton}" Visibility="{Binding ShowHistory, Converter={StaticResource BoolToVis}}"
+                                materialDesign:ButtonAssist.CornerRadius="10"
+                                Background="Black" Foreground="wHITE" ToolTip="See your booking history" Command="{Binding Path=HistoryReservations}">
+                    History of reservations
+                </Button>
+            </StackPanel>
+            
+            <WrapPanel Width="0" Height="0" Visibility="Hidden">
+                <TextBox Name="txtRoomId" Width="200" HorizontalAlignment="Left"
+                         Text="{Binding ElementName=offertsGrid, Path=SelectedItem.idRoom, UpdateSourceTrigger=PropertyChanged}" />
+            </WrapPanel>
+            <WrapPanel Width="0" Height="0" Visibility="Hidden">
+                <TextBox Name="txtDiscount" Width="200" HorizontalAlignment="Left"
+                         Text="{Binding ElementName=offertsGrid, Path=SelectedItem.discount, UpdateSourceTrigger=PropertyChanged}" />
+            </WrapPanel>
+            <WrapPanel Width="0" Height="0" Visibility="Hidden">
+                <TextBox Name="txtType" Width="200" HorizontalAlignment="Left"
+                         Text="{Binding ElementName=offertsGrid, Path=SelectedItem.roomType, UpdateSourceTrigger=PropertyChanged}" />
+            </WrapPanel>
+            <WrapPanel Width="0" Height="0" Visibility="Hidden">
+                <TextBox Name="txtDescription" Width="200" HorizontalAlignment="Left"
+                         Text="{Binding ElementName=offertsGrid, Path=SelectedItem.info, UpdateSourceTrigger=PropertyChanged}" />
+            </WrapPanel>
+        </StackPanel>
+       
     </Grid>
 </UserControl>
