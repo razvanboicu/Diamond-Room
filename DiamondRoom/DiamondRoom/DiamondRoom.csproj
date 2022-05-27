@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Models\Advertisement.cs" />
     <Compile Include="Models\BusinessLogic\AddressBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\AdvertismentBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\ExtraFeatureBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\FeatureBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\OfferBusinessLogic.cs" />

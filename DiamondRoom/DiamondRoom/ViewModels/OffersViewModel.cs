@@ -73,7 +73,6 @@ namespace DiamondRoom.ViewModels
                 return deleteCommand;
             }
         }
-
         #endregion
     }
 }

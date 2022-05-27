@@ -27,6 +27,7 @@ namespace DiamondRoom.ViewModels
         private NavigationStore _navigationStore;
 
         private OfferBusinessLogic offerBusinessLogic = new OfferBusinessLogic();
+        private AdvertismentBusinessLogic advertismentBusinessLogic;
 
         public ICommand AdminMenuCommand { get; }
         public ICommand LogOutCommand { get; }
@@ -62,21 +63,20 @@ namespace DiamondRoom.ViewModels
                 {
                     _showReservations = true;
                     ReservationsCommand = new NavigateCommand<ReservationsRoomViewModel>(navigationStore, () => new ReservationsRoomViewModel(navigationStore, _userLoggedIn));
-                } 
+                }
             }
+            advertismentBusinessLogic = new AdvertismentBusinessLogic(_navigationStore, _userLoggedIn);
             Advertisements = offerBusinessLogic.GetAdvertisments();
         }
+
         #region Command Members
         public void SeeOfferMethod(object obj)
         {
-            if (obj != null)
-                new NavigateCommand<HistoryReservationsViewModel>(_navigationStore, () => new HistoryReservationsViewModel(_navigationStore, _userLoggedIn)).Execute(this);
-            else MessageBox.Show("Selecteaza o oferta din lista!");
+            advertismentBusinessLogic.NavigateToDetailedOffer(obj);
         }
-
         public void SeeHistoryReservations(object obj)
         {
-                new NavigateCommand<HistoryReservationsViewModel>(_navigationStore, () => new HistoryReservationsViewModel(_navigationStore, _userLoggedIn)).Execute(this); 
+            new NavigateCommand<HistoryReservationsViewModel>(_navigationStore, () => new HistoryReservationsViewModel(_navigationStore, _userLoggedIn)).Execute(this);
         }
         private ICommand historyReservations;
         public ICommand HistoryReservations
@@ -90,7 +90,7 @@ namespace DiamondRoom.ViewModels
                 return historyReservations;
             }
         }
-
+     
         private ICommand seeOfferCommand;
         public ICommand SeeOfferCommand
         {
@@ -103,9 +103,7 @@ namespace DiamondRoom.ViewModels
                 return seeOfferCommand;
             }
         }
-
         #endregion
-
         public bool ShowHistory
         {
             get { return _showHistory; }

@@ -1,5 +1,6 @@
 ﻿using DiamondRoom.Commands;
 using DiamondRoom.Models;
+using DiamondRoom.Models.BusinessLogic;
 using DiamondRoom.Stores;
 using System;
 using System.Collections.Generic;
@@ -13,34 +14,30 @@ namespace DiamondRoom.ViewModels
 {
     public class SeeOfferViewModel : ViewModelBase
     {
-        private NavigationStore navigationStore;
-        private User userLoggedIn;
+        private NavigationStore _navigationStore;
+        private User _userLoggedIn;
+        private AdvertismentBusinessLogic _advertismentBusinessLogic;
+
         private Advertisement _advertisement;
         private ObservableCollection<Advertisement> _advertisments { get; set; }
-        public SeeOfferViewModel(NavigationStore navigationStore, User userLoggedIn, object obj)
+        public SeeOfferViewModel(NavigationStore navigationStore, User userLoggedIn, Advertisement obj)
         {
-            this.navigationStore = navigationStore;
-            this.userLoggedIn = userLoggedIn;
-            _advertisement = obj as Advertisement;
-            SelectedOffer = GetCustomCollection();
+            _navigationStore = navigationStore;
+            _userLoggedIn = userLoggedIn;
+            _advertisement = obj;
             _advertisments = new ObservableCollection<Advertisement>();
+            _advertismentBusinessLogic = new AdvertismentBusinessLogic(_navigationStore, _userLoggedIn);
+
             BackCommand = new NavigateCommand<FirstViewModel>(navigationStore, () => new FirstViewModel(navigationStore, userLoggedIn));
-            //Console.WriteLine("Test:" + (obj as Advertisement).roomType + "" +
-            //    "\n" + (obj as Advertisement).discount);
+            SelectedOffer = _advertismentBusinessLogic.GetSelectedOffer(_advertisement.idRoom);
         }
 
         public ICommand BackCommand { get; }
         public ObservableCollection<Advertisement> SelectedOffer
         {
-            get => _advertisments;
-            set => _advertisments = value;
+            get => _advertismentBusinessLogic.Advertisements;
+            set => _advertismentBusinessLogic.Advertisements = value;
         }
 
-        private ObservableCollection<Advertisement> GetCustomCollection()
-        {
-            ObservableCollection<Advertisement> result = new ObservableCollection<Advertisement>();
-            result.Add(_advertisement);
-            return result;
-        }
     }
 }

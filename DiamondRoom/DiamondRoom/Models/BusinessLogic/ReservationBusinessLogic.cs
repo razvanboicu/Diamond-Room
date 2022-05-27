@@ -223,8 +223,6 @@ namespace DiamondRoom.Models.BusinessLogic
 
                             }
 
-
-
                             reservationCustom.firstName = firstNamee;
                             reservationCustom.lastName = lastNamee;
                             reservationCustom.roomNumber = roomReservation.fk_room;
