@@ -24,5 +24,10 @@ namespace DiamondRoom.Views
         {
             InitializeComponent();
         }
+
+        private void offertsGrid_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
     }
 }

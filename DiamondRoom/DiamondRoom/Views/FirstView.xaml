@@ -135,8 +135,7 @@
             </StackPanel>
 
             <StackPanel>
-                <WrapPanel Width="200">
-                    <Label Width="150" FontSize="15">Discount(%): </Label>
+                <WrapPanel Width="0" Height="0" Visibility="Hidden">
                     <TextBox Name="txtRoomId" Width="50" HorizontalAlignment="Left"
                          Text="{Binding ElementName=offertsGrid, Path=SelectedItem.idRoom, UpdateSourceTrigger=PropertyChanged}" />
                 </WrapPanel>

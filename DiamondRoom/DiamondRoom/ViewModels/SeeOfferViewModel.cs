@@ -17,6 +17,10 @@ namespace DiamondRoom.ViewModels
         private NavigationStore _navigationStore;
         private User _userLoggedIn;
         private AdvertismentBusinessLogic _advertismentBusinessLogic;
+        private RoomBusinessLogic roomBusinessLogic = new RoomBusinessLogic();
+        private string _oldPrice;
+        private string _newPrice;
+        private string _youSave;
 
         private Advertisement _advertisement;
         private ObservableCollection<Advertisement> _advertisments { get; set; }
@@ -30,6 +34,25 @@ namespace DiamondRoom.ViewModels
 
             BackCommand = new NavigateCommand<FirstViewModel>(navigationStore, () => new FirstViewModel(navigationStore, userLoggedIn));
             SelectedOffer = _advertismentBusinessLogic.GetSelectedOffer(_advertisement.idRoom);
+            _oldPrice = "[OLD PRICE] " + roomBusinessLogic.GetPriceForSpecifiecIdRoom(_advertisement.idRoom).ToString() + " lei";
+            _newPrice = "[NEW PRICE] " + (int) roomBusinessLogic.GetDiscountedPriceWParameters(roomBusinessLogic.GetPriceForSpecifiecIdRoom(_advertisement.idRoom), _advertisement.discount) + " lei";
+            _youSave = " -" + ((int)roomBusinessLogic.GetPriceForSpecifiecIdRoom(_advertisement.idRoom) - (int)roomBusinessLogic.GetDiscountedPriceWParameters(roomBusinessLogic.GetPriceForSpecifiecIdRoom(_advertisement.idRoom), _advertisement.discount)).ToString()+ " lei";
+        }
+        public string YouSave
+        {
+            get { return _youSave; }
+            set { _youSave = value; }
+        }
+        public string NewPrice
+        {
+            get { return _newPrice; }
+            set { _newPrice = value; }
+        }
+
+        public string OldPrice
+        {
+            get { return _oldPrice; }
+            set { _oldPrice = value; }
         }
 
         public ICommand BackCommand { get; }
@@ -38,6 +61,7 @@ namespace DiamondRoom.ViewModels
             get => _advertismentBusinessLogic.Advertisements;
             set => _advertismentBusinessLogic.Advertisements = value;
         }
-
+        //avem pretul initial, apoi in dreapta o sa avem noul pret cu rosu asa frumos ca la oferta
+        //avem extraoptiuni default, doar le afisam, si apoi avem extraoptiune cu bani pe care le putem adauga la rezervarea noastra
     }
 }

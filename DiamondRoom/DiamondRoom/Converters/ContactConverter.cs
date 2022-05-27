@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace DiamondRoom.Converters
 {
-    internal class ContactConverter : IMultiValueConverter
+    public class ContactConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

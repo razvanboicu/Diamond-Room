@@ -22,14 +22,35 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="100"/>
 
         </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="2"  VerticalAlignment="Center" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Payment" Width="30" Height="30" VerticalAlignment="Center" />
+                    <TextBlock FontSize="20"  Margin="0 0 533 0" Text="{Binding OldPrice}" Style="{StaticResource MaterialDesignButtonTextBlock}"></TextBlock>
+              </StackPanel>
+            <StackPanel HorizontalAlignment="Right">
+                <TextBlock HorizontalAlignment="Right" FontSize="20" Margin="0 0 10 0" Text="{Binding YouSave}" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
+            </StackPanel>
+        </StackPanel>
+       
+        <StackPanel Grid.Column="1" Grid.Row="3"  VerticalAlignment="Center">
+            <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="RecurringPayment" Width="30" Height="30" VerticalAlignment="Center" />
+                <TextBlock  FontSize="20" Text="{Binding NewPrice}" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
+            </StackPanel>
+        </StackPanel> 
+       
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock FontSize="20"> Oferta dvs</TextBlock>
-            <DataGrid Name="offertsGrid"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="75"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding SelectedOffer}">
+            <TextBlock HorizontalAlignment="Left" FontSize="20"> Oferta dvs</TextBlock>
+            
+            <DataGrid Name="offertsGrid"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="65"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemsSource="{Binding SelectedOffer}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Oferta -> NR Camera" Binding="{Binding idRoom}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Discount (%)" Binding="{Binding discount}" IsReadOnly="True"/>

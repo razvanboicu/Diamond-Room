@@ -133,9 +133,32 @@ namespace DiamondRoom.Models.BusinessLogic
                 context.UpdateAvailabilityRoom(room.id, room.available);
                 context.SaveChanges();
             }
-            
-                       
-            
+        }
+        
+        public double GetDiscountedPriceWParameters(double oldPrice, int discount)
+        {
+            return oldPrice - ((double)((double)discount / 100) * oldPrice);
+        }
+      
+        public double GetPriceForSpecifiecIdRoom(int roomId)
+        {
+            List<Room_type> room_Types = context.Room_type.ToList();
+            List<Room> rooms = context.Rooms.ToList();
+
+            foreach(Room room in rooms)
+            {
+                if(room.id == roomId)
+                {
+                    foreach(Room_type room_type in room_Types)
+                    {
+                        if (room_type.id == room.fk_type) { 
+                            return room_type.price;
+                        }
+                    }
+                }
+            }
+            return -1;
+
         }
     }
 }
