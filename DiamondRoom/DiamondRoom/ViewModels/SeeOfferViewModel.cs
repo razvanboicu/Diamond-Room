@@ -18,6 +18,7 @@ namespace DiamondRoom.ViewModels
         private User _userLoggedIn;
         private AdvertismentBusinessLogic _advertismentBusinessLogic;
         private RoomBusinessLogic roomBusinessLogic = new RoomBusinessLogic();
+        private RoomFeaturesBusinessLogic roomFeatureBusinessLogic = new RoomFeaturesBusinessLogic();
         private string _oldPrice;
         private string _newPrice;
         private string _youSave;
@@ -37,6 +38,8 @@ namespace DiamondRoom.ViewModels
             _oldPrice = "[OLD PRICE] " + roomBusinessLogic.GetPriceForSpecifiecIdRoom(_advertisement.idRoom).ToString() + " lei";
             _newPrice = "[NEW PRICE] " + (int) roomBusinessLogic.GetDiscountedPriceWParameters(roomBusinessLogic.GetPriceForSpecifiecIdRoom(_advertisement.idRoom), _advertisement.discount) + " lei";
             _youSave = " -" + ((int)roomBusinessLogic.GetPriceForSpecifiecIdRoom(_advertisement.idRoom) - (int)roomBusinessLogic.GetDiscountedPriceWParameters(roomBusinessLogic.GetPriceForSpecifiecIdRoom(_advertisement.idRoom), _advertisement.discount)).ToString()+ " lei";
+
+            DefaultFeatures = roomFeatureBusinessLogic.GetFeaturesForSpecifiedRoomID(_advertisement.idRoom);
         }
         public string YouSave
         {
@@ -56,12 +59,18 @@ namespace DiamondRoom.ViewModels
         }
 
         public ICommand BackCommand { get; }
+        public ObservableCollection<Feature> DefaultFeatures
+        {
+            get => roomFeatureBusinessLogic.FeaturesForSpecifiedRoom;
+            set => roomFeatureBusinessLogic.FeaturesForSpecifiedRoom = value;
+        }
         public ObservableCollection<Advertisement> SelectedOffer
         {
             get => _advertismentBusinessLogic.Advertisements;
             set => _advertismentBusinessLogic.Advertisements = value;
         }
-        //avem pretul initial, apoi in dreapta o sa avem noul pret cu rosu asa frumos ca la oferta
+        // [OK] avem pretul initial, apoi in dreapta o sa avem noul pret cu rosu asa frumos ca la oferta 
         //avem extraoptiuni default, doar le afisam, si apoi avem extraoptiune cu bani pe care le putem adauga la rezervarea noastra
+        //voucher ca pe tazz
     }
 }

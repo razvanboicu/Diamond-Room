@@ -104,6 +104,7 @@
     <Compile Include="Models\BusinessLogic\OfferBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\ReservationBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\RoomBusinessLogic.cs" />
+    <Compile Include="Models\BusinessLogic\RoomFeaturesBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\RoomTypeBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\UserBusinessLogic.cs" />
     <Compile Include="Models\BusinessLogic\ContactBusinessLogic.cs" />
