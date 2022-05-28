@@ -23,7 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="250"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="100"/>
@@ -34,7 +34,6 @@
                 <materialDesign:PackIcon Kind="Payment" Width="30" Height="30" VerticalAlignment="Center" />
                 <TextBlock FontSize="20" Margin="0 0 530 0" Text="{Binding OldPrice}" Style="{StaticResource MaterialDesignButtonTextBlock}"/>
             </StackPanel>
-            <Line Grid.Row="1" Stroke="Red" StrokeThickness="10" Stretch="Uniform"></Line>
             <StackPanel HorizontalAlignment="Right">
                 <TextBlock HorizontalAlignment="Right" FontSize="20" Margin="0 0 10 0" Text="{Binding YouSave}" Style="{StaticResource MaterialDesignBody2TextBlock}" Foreground="Red"/>
             </StackPanel>
@@ -49,7 +48,7 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock HorizontalAlignment="Left" FontSize="20">Your offer</TextBlock>
-            <DataGrid Name="offertsGrid"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="73"
+            <DataGrid Name="offertsGrid"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="Auto"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemsSource="{Binding SelectedOffer}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Offer (room nr)" Binding="{Binding idRoom}" IsReadOnly="True"/>
@@ -59,10 +58,10 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel HorizontalAlignment="Right">
-                <Button Content="Add a voucher" Width="130" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
+                <!--<Button Content="Add a voucher" Width="130" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#e82"
                                 Background="#e82" Foreground="White" ToolTip="Do you have a voucher? Add it to your offer" Command="{Binding Path = BackCommand}">
-                </Button>
+                </Button>-->
             </StackPanel>
         </StackPanel>
 

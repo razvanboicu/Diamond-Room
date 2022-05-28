@@ -117,6 +117,7 @@
     <Compile Include="Models\Feature.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Logic\DatePickerLogic.cs" />
     <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -181,6 +182,7 @@
     <Compile Include="ViewModels\ReservationsRoomViewModel.cs" />
     <Compile Include="ViewModels\RoomsTableViewModel.cs" />
     <Compile Include="ViewModels\RoomTypeViewModel.cs" />
+    <Compile Include="ViewModels\SearchRoomsViewModel.cs" />
     <Compile Include="ViewModels\SeeOfferViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AdminPanelView.xaml.cs">
@@ -218,6 +220,9 @@
     </Compile>
     <Compile Include="Views\RoomTypeView.xaml.cs">
       <DependentUpon>RoomTypeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchRoomsView.xaml.cs">
+      <DependentUpon>SearchRoomsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SeeOfferView.xaml.cs">
       <DependentUpon>SeeOfferView.xaml</DependentUpon>
@@ -279,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RoomTypeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchRoomsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -71,6 +71,6 @@ namespace DiamondRoom.ViewModels
         }
         // [OK] avem pretul initial, apoi in dreapta o sa avem noul pret cu rosu asa frumos ca la oferta 
         //avem extraoptiuni default, doar le afisam, si apoi avem extraoptiune cu bani pe care le putem adauga la rezervarea noastra
-        //voucher ca pe tazz
+        // voucher ca pe tazz
     }
 }

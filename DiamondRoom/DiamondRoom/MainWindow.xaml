@@ -50,6 +50,9 @@
             <DataTemplate DataType="{x:Type viewmodels:HistoryReservationsViewModel}">
                 <views:HistoryReservationsView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SearchRoomsViewModel}">
+                <views:SearchRoomsView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

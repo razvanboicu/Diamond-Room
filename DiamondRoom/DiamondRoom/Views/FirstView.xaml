@@ -7,6 +7,7 @@
              xmlns:localviewmodels="clr-namespace:DiamondRoom.ViewModels"
               xmlns:localConverter="clr-namespace:DiamondRoom.Converters"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920" Background="#e3e3e3">
 
@@ -41,13 +42,22 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal" >
                 <!--<materialDesign:PackIcon Kind="Search" Width="25" Height="25" Foreground="Black"/>-->
-                <TextBox Foreground="Black" materialDesign:HintAssist.Hint="Search an offer" Width="250" BorderBrush="Black" CaretBrush="Red" SelectionBrush="Blue"/>
-                <DatePicker HorizontalAlignment="Left" Name="DatePickerFrom" Text="From" Width="Auto" Height="35" Foreground="Black" ToolTip="Date from"/>
-                <DatePicker HorizontalAlignment="Right" Margin="0 0 10 0" Name="DatePickerTo" Text="To" Width="Auto" Height="35" Foreground="Black" ToolTip="Date to"/>
+                <TextBox Text="{Binding TypedSearchInformations}" Foreground="Black" materialDesign:HintAssist.Hint="Search an offer" Width="250" BorderBrush="Black" CaretBrush="Red" SelectionBrush="Blue"/>
+                <DatePicker HorizontalAlignment="Left" Name="DatePickerFrom" Text="From"
+                            Width="Auto" Height="35" Foreground="Black" ToolTip="Date from"  
+                             SelectedDate="{Binding DateFrom}"/>
+                            <!--DisplayDate="{x:Static System:DateTime.Now}"-->
+                            
+                <DatePicker HorizontalAlignment="Right" Margin="0 0 10 0" Name="DatePickerTo" Text="To"
+                            Width="Auto" Height="35" Foreground="Black" ToolTip="Date to"
+                             SelectedDate="{Binding DateTo}"/>
+                             <!--DisplayDate="{x:Static System:DateTime.Now}"-->
+                            
                 <StackPanel HorizontalAlignment="Right">
                     <Button Style="{StaticResource MaterialDesignRaisedButton}"
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderBrush="Transparent"
-                                Background="Transparent" ToolTip="Search">
+                                Background="Transparent" ToolTip="Search"
+                                Command="{Binding SearchRoomsCommand}">
                         <materialDesign:PackIcon Kind="Search" Width="25" Height="25" Foreground="Black"/>
                     </Button>
                 </StackPanel>
@@ -111,10 +121,10 @@
             <DataGrid Name="offertsGrid"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="250"
                   ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Advertisements}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Oferta -> NR Camera" Binding="{Binding idRoom}"/>
+                    <DataGridTextColumn Header="Offer (room)" Binding="{Binding idRoom}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Discount (%)" Binding="{Binding discount}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Tipul camerei" Binding="{Binding roomType}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Descriere" Binding="{Binding info}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Type of the camera" Binding="{Binding roomType}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding info}" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
 
