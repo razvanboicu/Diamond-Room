@@ -13,18 +13,93 @@ namespace DiamondRoom.Models.BusinessLogic
         private DiamondRoomEntities7 context = new DiamondRoomEntities7();
         public ObservableCollection<Room> Rooms { get; set; }
         public ObservableCollection<RoomCustom> RoomsCustom { get; set; }
-
+        public ObservableCollection<SearchRoomCustom> RoomsSearched { get; set; }
         private RoomTypeBusinessLogic roomTypeBusinessLogic = new RoomTypeBusinessLogic();
         public RoomBusinessLogic()
         {
             Rooms = new ObservableCollection<Room>();
             RoomsCustom = new ObservableCollection<RoomCustom>();
+            RoomsSearched = new ObservableCollection<SearchRoomCustom>();
         }
-        
+
+        public ObservableCollection<SearchRoomCustom> GetRoomsAvailableSelectedPeriodOfTime(DateTime? from, DateTime? to)
+        {
+            ObservableCollection<SearchRoomCustom> result = new ObservableCollection<SearchRoomCustom>();
+            List<Room_reservations> roomReservations = context.Room_reservations.ToList();
+            List<Reservation> reservations = context.Reservations.ToList();
+            List<Room> rooms = context.Rooms.ToList();
+            List<Room_type> roomTypes = context.Room_type.ToList();
+            List<Offer> offers = context.Offers.ToList();
+            HashSet<int> busyRooms = new HashSet<int>();
+
+            foreach (Room_reservations roomReservation in roomReservations)
+            {
+                foreach (Reservation reservation in reservations)
+                {
+                    if (roomReservation.fk_reservation == reservation.id)
+                    {
+                        if (from >= reservation.dateFrom && from <= reservation.dateTo)
+                        {
+                            busyRooms.Add(roomReservation.fk_room);
+                            break;
+                        }
+                        else if (from < reservation.dateFrom && to <= reservation.dateTo && to >= reservation.dateFrom)
+                        {
+                            busyRooms.Add(roomReservation.fk_room);
+                            break;
+                        }
+                        else if (from >= reservation.dateFrom && from <= reservation.dateTo && to > reservation.dateTo)
+                        {
+                            busyRooms.Add(roomReservation.fk_room);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            
+            foreach (Room room in rooms)
+            {
+                if (!busyRooms.Contains(room.id))
+                {
+                    foreach (Room_type roomType in roomTypes)
+                    {
+                        SearchRoomCustom searchRoom = new SearchRoomCustom();
+                        if (room.fk_type == roomType.id)
+                        {
+                            searchRoom._roomID = room.id;
+                            searchRoom._roomType = roomType.type;
+                            searchRoom._price = (int)roomType.price;
+
+                            bool has = false;
+                            foreach (Offer offer in offers)
+                            {
+                                if (offer.fk_room == room.id)
+                                {
+                                    has = true;
+                                    break;
+                                }
+                            }
+                            if (has) searchRoom._hasOffer = true;
+                            else searchRoom._hasOffer = false;
+                            result.Add(searchRoom);
+                            break;
+                            //trebuie sa creez un obiect de tipul RoomSearchCustom 
+                        }
+                    }
+                }
+            }
+            foreach(var availableRooms in result)
+            {
+                Console.WriteLine(availableRooms._roomID + " " + availableRooms._roomType + " " + availableRooms._price + " " + availableRooms._hasOffer);
+            }
+            return result;
+        }
+
         public bool CheckIfAnIdExists(int idSearched)
         {
             List<Room> rooms = context.Rooms.ToList();
-            foreach(Room room in rooms)
+            foreach (Room room in rooms)
             {
                 if (room.id == idSearched)
                     return true;
@@ -36,7 +111,7 @@ namespace DiamondRoom.Models.BusinessLogic
             List<Room> rooms = context.Rooms.ToList();
             List<Room_type> roomTypes = context.Room_type.ToList();
             ObservableCollection<RoomCustom> result = new ObservableCollection<RoomCustom>();
-            foreach(Room room in rooms)
+            foreach (Room room in rooms)
             {
                 foreach (Room_type roomType in roomTypes)
                 {
@@ -47,8 +122,8 @@ namespace DiamondRoom.Models.BusinessLogic
                             id = room.id,
                             available = room.available,
                             type = roomType.type,
-                            price = (int) roomType.price
-                        }) ;
+                            price = (int)roomType.price
+                        });
                         break;
                     }
                 }
@@ -63,7 +138,7 @@ namespace DiamondRoom.Models.BusinessLogic
 
             foreach (Room room in rooms)
             {
-                if(room.id == idSearched)
+                if (room.id == idSearched)
                 {
                     foreach (Room_type roomType in roomTypes)
                     {
@@ -79,7 +154,7 @@ namespace DiamondRoom.Models.BusinessLogic
                         }
                     }
                 }
-                
+
             }
             return null;
         }
@@ -134,24 +209,25 @@ namespace DiamondRoom.Models.BusinessLogic
                 context.SaveChanges();
             }
         }
-        
+
         public double GetDiscountedPriceWParameters(double oldPrice, int discount)
         {
             return oldPrice - ((double)((double)discount / 100) * oldPrice);
         }
-      
+
         public double GetPriceForSpecifiecIdRoom(int roomId)
         {
             List<Room_type> room_Types = context.Room_type.ToList();
             List<Room> rooms = context.Rooms.ToList();
 
-            foreach(Room room in rooms)
+            foreach (Room room in rooms)
             {
-                if(room.id == roomId)
+                if (room.id == roomId)
                 {
-                    foreach(Room_type room_type in room_Types)
+                    foreach (Room_type room_type in room_Types)
                     {
-                        if (room_type.id == room.fk_type) { 
+                        if (room_type.id == room.fk_type)
+                        {
                             return room_type.price;
                         }
                     }
@@ -162,3 +238,4 @@ namespace DiamondRoom.Models.BusinessLogic
         }
     }
 }
+

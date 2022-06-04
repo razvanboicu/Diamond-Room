@@ -38,9 +38,13 @@
         <StackPanel Grid.Row="0" Grid.Column="1">
             <Image Source="/Images/cover.png" Width="1400" Height="180"></Image>
         </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="0" >
+            <Image Source="/Images/loc.png"  Width="150" Height="480"/>
+        </StackPanel>
+        
         <!-- search bar -->
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal">
                 <!--<materialDesign:PackIcon Kind="Search" Width="25" Height="25" Foreground="Black"/>-->
                 <TextBox Text="{Binding TypedSearchInformations}" Foreground="Black" materialDesign:HintAssist.Hint="Search an offer" Width="250" BorderBrush="Black" CaretBrush="Red" SelectionBrush="Blue"/>
                 <DatePicker HorizontalAlignment="Left" Name="DatePickerFrom" Text="From"

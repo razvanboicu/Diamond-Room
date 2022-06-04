@@ -28,13 +28,13 @@
         
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignButtonTextBlock}"> Available offers </TextBlock>
-            <DataGrid Name="offertsGrid"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="Auto"
-                  ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemsSource="{Binding SelectedOffer}">
+            <DataGrid Name="availableRooms"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled" ItemsSource="{Binding AvailableRooms}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Room" Binding="{Binding idRoom}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Type" Binding="{Binding discount}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Price/day" Binding="{Binding roomType}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Has offer?" Binding="{Binding info}" IsReadOnly="True" /> <!--  Daca are oferta o sa fie Yes, altfel No-->
+                    <DataGridTextColumn Header="Room" Binding="{Binding _roomID}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding _roomType}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Price/day" Binding="{Binding _price}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Has offer?" Binding="{Binding _hasOffer}" IsReadOnly="True" /> 
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
@@ -49,8 +49,8 @@
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Margin="10">
-                <Button Content="Read more about selected offer" Width="280" Margin="0 0 20 0" Command="{Binding SeeOfferCommand}" 
-                    CommandParameter="{Binding ElementName=offertsGrid, Path=SelectedItem}" />
+                <Button Content="Read more about selected offer" Width="280" Margin="0 0 20 0" Command="{Binding ReadMoreCommand}" 
+                    CommandParameter="{Binding ElementName=availableRooms, Path=SelectedItem}" />
             </StackPanel>
         </StackPanel>
 
