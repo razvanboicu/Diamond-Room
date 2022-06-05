@@ -8,3 +8,11 @@ Of course we also have an area dedicated to staff (staff is considered either an
 The administrator can perform CRUD operations on most of the tables in the database and of course he can see all the currently active reservations in the hotel,
 and many more. The employee is an extra logged in user with the possibility to view the reservations and change their status (paid, unpaid, various comments)
 
+## Access-levels
+- level 0 (Admin)
+- level 1 (Employee)
+- level 2 (client)
+- ? no level (guest)
+
+## Now-working-at
+- Create the reservation and make the payment, also in the payment menu we will have the possiblity to add a voucher 
