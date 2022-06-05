@@ -19,13 +19,13 @@ namespace DiamondRoom.Models.Logic
         private string typedSearchInfo;
         
 
-        public DatePickerLogic(NavigationStore navigationStore, User userLoggedIn, DateTime? dateFrom, DateTime? dateTo, string typedInfo)
+        public DatePickerLogic(NavigationStore navigationStore, User userLoggedIn, Tuple<DateTime?, DateTime?, string> userSpecifications)
         {
             this.navigationStore = navigationStore;
             this.userLoggedIn = userLoggedIn;
-            this.dateFrom = dateFrom;
-            this.dateTo = dateTo;
-            typedSearchInfo = typedInfo;
+            this.dateFrom = userSpecifications.Item1;
+            this.dateTo = userSpecifications.Item2;
+            typedSearchInfo = userSpecifications.Item3;
         }
 
         public void SearchFreeRooms(object obj)
@@ -35,7 +35,7 @@ namespace DiamondRoom.Models.Logic
                 if(dateFrom < dateTo)
                 {
                     Console.WriteLine("Typed Info: " + typedSearchInfo);
-                    new NavigateCommand<SearchRoomsViewModel>(navigationStore, () => new SearchRoomsViewModel(navigationStore, userLoggedIn, dateFrom, dateTo)).Execute(this);
+                    new NavigateCommand<SearchRoomsViewModel>(navigationStore, () => new SearchRoomsViewModel(navigationStore, userLoggedIn, new Tuple<DateTime?, DateTime?, string>(dateFrom, dateTo, typedSearchInfo))).Execute(this);
                 }
                 else
                 {

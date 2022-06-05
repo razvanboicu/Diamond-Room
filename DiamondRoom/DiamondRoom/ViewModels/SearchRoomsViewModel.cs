@@ -19,29 +19,34 @@ namespace DiamondRoom.ViewModels
         private User userLoggedIn;
         private DateTime? dateFrom;
         private DateTime? dateTo;
+        private string userTypedInfo;
         private RoomBusinessLogic roomBusinessLogic = new RoomBusinessLogic();
+        private SearchAvailableRoomsLogic searchAvailableRoomsLogic;
 
         public ICommand BackCommand { get; }
         private ICommand readMoreCommand;
-        public SearchRoomsViewModel(NavigationStore navigationStore, User userLoggedIn, DateTime? dateFrom, DateTime? dateTo)
+        public SearchRoomsViewModel(NavigationStore navigationStore, User userLoggedIn, Tuple<DateTime?, DateTime?, string> userSpecifications)
         {
             this.navigationStore = navigationStore;
             this.userLoggedIn = userLoggedIn;
-            this.dateFrom = dateFrom;
-            this.dateTo = dateTo;
+            this.dateFrom = userSpecifications.Item1;
+            this.dateTo = userSpecifications.Item2;
+            userTypedInfo = userSpecifications.Item3;
+
             Console.WriteLine(dateFrom + "\n And To:" + dateTo);
             
             AvailableRooms = roomBusinessLogic.GetRoomsAvailableSelectedPeriodOfTime(dateFrom, dateTo);
             BackCommand = new NavigateCommand<FirstViewModel>(navigationStore, () => new FirstViewModel(navigationStore, userLoggedIn));
+            searchAvailableRoomsLogic = new SearchAvailableRoomsLogic(this.navigationStore, this.userLoggedIn, new Tuple<DateTime?, DateTime?, string>(dateFrom, dateTo, userTypedInfo));
         }
         public ObservableCollection<SearchRoomCustom> AvailableRooms
         {
             get => roomBusinessLogic.RoomsSearched;
             set => roomBusinessLogic.RoomsSearched = value;
         }
-        public void SearchAvailableRoomsButton(object obj)
+        public void ReadMoreAboutSelectedRoom(object obj)
         {
-            SearchAvailableRoomsLogic.SearchAvailableRooms(obj);
+            searchAvailableRoomsLogic.ReadMoreAboutClickedRoom(obj);
         }
         public ICommand ReadMoreCommand
         {
@@ -49,7 +54,7 @@ namespace DiamondRoom.ViewModels
             {
                 if (readMoreCommand == null)
                 {
-                    readMoreCommand = new RelayCommand(SearchAvailableRoomsButton);
+                    readMoreCommand = new RelayCommand(ReadMoreAboutSelectedRoom);
                 }
                 return readMoreCommand;
             }

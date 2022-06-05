@@ -13,11 +13,39 @@ namespace DiamondRoom.Models.BusinessLogic
         private DiamondRoomEntities7 context = new DiamondRoomEntities7();
         public ObservableCollection<Extra_features> ExtraFeatures { get; set; }
 
+        public ObservableCollection<ExtraFeatureCustom> ExtraFeaturesCustom4ComboList { get; set; }
+
         public ExtraFeatureBusinessLogic()
         {
             ExtraFeatures = new ObservableCollection<Extra_features>();
+            ExtraFeaturesCustom4ComboList = new ObservableCollection<ExtraFeatureCustom>();
         }
 
+        public int GetAditionalCostForCheckedFeatures(ObservableCollection<ExtraFeatureCustom> source)
+        {
+            int aditionalCost = 0;
+            for(int i = 0; i < source.Count; i++)
+                if (source[i].isChecked) aditionalCost += source[i].price;
+            return aditionalCost;
+        }
+
+        public ObservableCollection<ExtraFeatureCustom> GetExtraFeatures4List()
+        {
+            ObservableCollection<ExtraFeatureCustom> result = new ObservableCollection<ExtraFeatureCustom>();
+            List<Extra_features> extraFeatures = context.Extra_features.ToList();
+            foreach(Extra_features extraFeature in extraFeatures)
+            {
+                result.Add(new ExtraFeatureCustom()
+                {
+                    id = extraFeature.id,
+                    price = (int)extraFeature.price,
+                    name = extraFeature.service + " (" + (int)extraFeature.price + " lei)",
+                    isChecked = false
+                });
+            }
+
+            return result;
+        }
         public ObservableCollection<Extra_features> GetAllExtraFeatures()
         {
             List<Extra_features> features = context.Extra_features.ToList();

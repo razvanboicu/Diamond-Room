@@ -53,6 +53,9 @@
             <DataTemplate DataType="{x:Type viewmodels:SearchRoomsViewModel}">
                 <views:SearchRoomsView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SelectedRoomPossibleReservationViewModel}">
+                <views:SelectedRoomPossibleReservation/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

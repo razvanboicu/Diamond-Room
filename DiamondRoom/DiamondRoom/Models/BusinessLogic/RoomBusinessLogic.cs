@@ -14,12 +14,15 @@ namespace DiamondRoom.Models.BusinessLogic
         public ObservableCollection<Room> Rooms { get; set; }
         public ObservableCollection<RoomCustom> RoomsCustom { get; set; }
         public ObservableCollection<SearchRoomCustom> RoomsSearched { get; set; }
+
+        public ObservableCollection<SearchRoomCustom> SelectedRoom { get; set; }
         private RoomTypeBusinessLogic roomTypeBusinessLogic = new RoomTypeBusinessLogic();
         public RoomBusinessLogic()
         {
             Rooms = new ObservableCollection<Room>();
             RoomsCustom = new ObservableCollection<RoomCustom>();
             RoomsSearched = new ObservableCollection<SearchRoomCustom>();
+            SelectedRoom = new ObservableCollection<SearchRoomCustom>();
         }
 
         public ObservableCollection<SearchRoomCustom> GetRoomsAvailableSelectedPeriodOfTime(DateTime? from, DateTime? to)
@@ -93,6 +96,13 @@ namespace DiamondRoom.Models.BusinessLogic
             {
                 Console.WriteLine(availableRooms._roomID + " " + availableRooms._roomType + " " + availableRooms._price + " " + availableRooms._hasOffer);
             }
+            return result;
+        }
+
+        public ObservableCollection<SearchRoomCustom> GetSelectedPossibleReservation(SearchRoomCustom request)
+        {
+            ObservableCollection<SearchRoomCustom> result = new ObservableCollection<SearchRoomCustom>();
+            result.Add(request);
             return result;
         }
 

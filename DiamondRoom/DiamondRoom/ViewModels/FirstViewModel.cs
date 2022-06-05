@@ -149,13 +149,15 @@ namespace DiamondRoom.ViewModels
         {
             get
             {
-                datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, _dateFrom, _dateTo, _typedSearchInformations);
+                //datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, _dateFrom, _dateTo, _typedSearchInformations);
+                datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, new Tuple<DateTime?, DateTime?, string>(_dateFrom, _dateTo, _typedSearchInformations));
                 return _dateFrom;
             }
             set
             {
                 _dateFrom = value;
-                datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, _dateFrom, _dateTo, _typedSearchInformations);
+                //datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, _dateFrom, _dateTo, _typedSearchInformations);
+                datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, new Tuple<DateTime?, DateTime?, string>(_dateFrom, _dateTo, _typedSearchInformations));
             }
         }
 
@@ -163,13 +165,15 @@ namespace DiamondRoom.ViewModels
         {
             get
             {
-                datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, _dateFrom, _dateTo, _typedSearchInformations);
+                //datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, _dateFrom, _dateTo, _typedSearchInformations);
+                datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, new Tuple<DateTime?, DateTime?, string>(_dateFrom, _dateTo, _typedSearchInformations));
                 return _dateTo;
             }
             set
             {
                 _dateTo = value;
-                datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, _dateFrom, _dateTo, _typedSearchInformations);
+                //datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, _dateFrom, _dateTo, _typedSearchInformations);
+                datePickerLogic = new DatePickerLogic(_navigationStore, _userLoggedIn, new Tuple<DateTime?, DateTime?, string>(_dateFrom, _dateTo, _typedSearchInformations));
             }
         }
         public ObservableCollection<Advertisement> Advertisements

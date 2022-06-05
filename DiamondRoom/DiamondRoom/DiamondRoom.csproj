@@ -111,6 +111,7 @@
     <Compile Include="Models\Contact.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExtraFeatureCustom.cs" />
     <Compile Include="Models\Extra_features.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -186,6 +187,7 @@
     <Compile Include="ViewModels\RoomTypeViewModel.cs" />
     <Compile Include="ViewModels\SearchRoomsViewModel.cs" />
     <Compile Include="ViewModels\SeeOfferViewModel.cs" />
+    <Compile Include="ViewModels\SelectedRoomPossibleReservationViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AdminPanelView.xaml.cs">
       <DependentUpon>AdminPanelView.xaml</DependentUpon>
@@ -228,6 +230,9 @@
     </Compile>
     <Compile Include="Views\SeeOfferView.xaml.cs">
       <DependentUpon>SeeOfferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectedRoomPossibleReservation.xaml.cs">
+      <DependentUpon>SelectedRoomPossibleReservation.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -294,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SeeOfferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectedRoomPossibleReservation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
