@@ -1,6 +1,8 @@
 # Diamond-Room
 Application that allows the management of a hotel, boarding house etc. from the point of view of the client, but also of the administrator/employee
 
+![firstVieww](https://user-images.githubusercontent.com/95618244/172885830-ba36da97-2a89-45d4-b728-b1e1c5b95718.JPG)
+
 ## First-View
 Initially we are simple visitors, where the functionalities are limited, but we can still see the available offers and we can see some details about them and  the free rooms for a specified period of time, also the extra price if we select extra features, but can't make a reservation.
 If we want to make a reservation we must have an account, automatically to be logged in. Also when we are logged in we can view the history of our reservations.
