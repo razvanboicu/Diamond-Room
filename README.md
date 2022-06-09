@@ -31,3 +31,6 @@ A small view of the login / register windows design
 
 ## Now-working-at
 - Create the reservation and make the payment, also in the payment menu we will have the possiblity to add a voucher 
+
+## Technical specifications
+The application has a very well cohesive MVVM architecture, connected to its database, as UI elements, buttons, some fonts are from Material Design
