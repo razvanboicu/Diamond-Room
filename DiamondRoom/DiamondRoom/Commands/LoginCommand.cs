@@ -23,15 +23,16 @@ namespace DiamondRoom.Commands
         }
         public override void Execute(object parameter)
         {
-            Console.WriteLine(_loginViewModel.Username + "---" + _loginViewModel.Password);
+            Console.WriteLine("User typed" +"\nuser:"+_loginViewModel.Username + "\npass:" + _loginViewModel.Password);
             User response = userBussinessLogic.CheckIfUserExists(_loginViewModel.Username, _loginViewModel.Password);
             if (response != null)
             {
                 new NavigateCommand<FirstViewModel>(_navigationStore, () => new FirstViewModel(_navigationStore, response)).Execute(this);
-                Console.WriteLine("Successfully logged in");
+                Console.WriteLine("Successfully logged in\n");
             }
             else
             {
+                Console.WriteLine("Unsuccessfully attempt for login\n");
                 MessageBox.Show("Username or password incorrect!");
             }
         }

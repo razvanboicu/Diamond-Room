@@ -18,6 +18,7 @@ namespace DiamondRoom.ViewModels
         private ExtraFeatureBusinessLogic extraFeatureBusinessLogic = new ExtraFeatureBusinessLogic();
 
         public ICommand BackCommand { get; }
+        public ICommand ProceedReservation { get; }
         private ICommand printList;
 
         private string _aditionalCost;
@@ -30,12 +31,12 @@ namespace DiamondRoom.ViewModels
             BackCommand = new NavigateCommand<SearchRoomsViewModel>(navigationStore, () => new SearchRoomsViewModel(navigationStore, userLoggedIn, userSpecifications));
             SelectedRoom = roomBusinessLogic.GetSelectedPossibleReservation(request);
             ExtraFeaturesAvailable = extraFeatureBusinessLogic.GetExtraFeatures4List();
-
+            ProceedReservation = new NavigateCommand<ProceedReservationViewModel>(navigationStore, () => new ProceedReservationViewModel(navigationStore, userLoggedIn, request, ExtraFeaturesAvailable, userSpecifications));
         }
         public void CheckExtraPrice(object obj)
         {
             for (int i = 0; i < ExtraFeaturesAvailable.Count; i++)
-            {
+            { 
                 Console.WriteLine(ExtraFeaturesAvailable[i].name + " -> " + ExtraFeaturesAvailable[i].isChecked);
             }
         }

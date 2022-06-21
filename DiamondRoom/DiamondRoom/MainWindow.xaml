@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" Background="#e3e3e3"
         Title="DiamondRoom" Height="1080" Width="1920">
+    
     <ContentControl Content="{Binding CurrentViewModel}">
         <ContentControl.Resources>
             <DataTemplate DataType="{x:Type viewmodels:FirstViewModel}">
@@ -55,6 +56,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:SelectedRoomPossibleReservationViewModel}">
                 <views:SelectedRoomPossibleReservation/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ProceedReservationViewModel}">
+                <views:ProceedReservationView/>
             </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>

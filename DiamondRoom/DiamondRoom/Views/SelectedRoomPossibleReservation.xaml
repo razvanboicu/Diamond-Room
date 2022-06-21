@@ -22,10 +22,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="200"/>
-            <RowDefinition Height="700"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="400"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Button Content="Proceed the reservation" Width="200" Height="40" Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="#527F5E"
+                                Background="#527F5E" Foreground="White" ToolTip="Proceed to the final step" Command="{Binding Path = ProceedReservation}">
+            </Button>
+        </StackPanel>
+        
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignButtonTextBlock}">Your selection:</TextBlock>
             <DataGrid Name="availableRoomz"  Margin="0,15,0,0" AutoGenerateColumns="False" Height="Auto"
